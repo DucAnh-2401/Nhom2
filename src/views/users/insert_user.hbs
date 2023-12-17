@@ -1,0 +1,44 @@
+<form id="update_user" class="insert_user_form" method="POST">
+    <div>
+        <h1>Thêm mới người dùng</h1>
+        <div class="user-box">
+            <i class="fa-solid fa-users-rectangle"></i>
+            <input type="text" name="userposition" id="userposition" placeholder="Vai trò"
+                >
+        </div>
+        <div class="user-box">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" name="username" id="username" placeholder="Họ và tên">
+
+        </div>
+        <div class="user-box">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" name="username_sign" id="username_sign" placeholder="Tên đăng nhập (là duy nhất)"
+                >
+
+
+        </div>
+        <div class="user-box">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" name="useremail" id="useremail" placeholder="Email">
+        </div>
+        <div class="user-box">
+            <i class="fa-solid fa-key"></i>
+            <input type="text" name="userpassword" id="userpassword" 
+                placeholder="Mật khẩu">
+
+        </div>
+        <div class="user-box user-last-box">
+            <i class="fa-solid fa-key"></i>
+            <input type="text" name="confirm_userpassword" id="confirm_password" 
+                placeholder="Xác nhận mật khẩu">
+        </div>
+        <p class="confirm_delete confirm_update_user">
+            <button type="submit" id="confirm_update_info">Thêm mới</button>
+            <button type="button">Hủy</button>
+        </p>
+    </div>
+    
+</form>
+
+<script src="../js/update_user.js"></script>

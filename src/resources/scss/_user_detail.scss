@@ -1,0 +1,56 @@
+#update_user{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+#update_user>div{
+    width:max-content;
+    height:max-content;
+    padding:50px;
+    padding-top: 0px;
+    background-color: #eadfdf;
+    margin:20px 0px;
+}
+#update_user>div .user-box,#update_user>div h1{
+    width:max-content;
+    margin:10px 0px;
+}
+.user-box .fa-solid{
+    padding-right:5px;
+    font-size: larger;
+}
+.user-box .fa-users-rectangle{
+    font-size: small;
+}
+.user-box input{
+    
+    font-size: 18px;
+    padding:5px 10px 2px;
+}
+
+#update_user .confirm_delete{
+    text-align: right;
+}
+#update_user .confirm_delete button:last-child{
+    background-color: darkgray;
+    border-color:darkgray ;
+}
+.confirm_update{
+    position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+    display:none;
+}
+.confirm_update button{
+    background-color: rgb(9,198,19);
+    color:white;
+    border-color: rgb(9,198,19);
+}
+.confirm_update_user{
+    text-align: right;
+    display: block;
+    position: relative;
+    background-color: rgb(234, 223, 223);
+}

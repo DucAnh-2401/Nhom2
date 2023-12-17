@@ -1,0 +1,159 @@
+header {
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    z-index: 2;
+    background-color: rgb(130, 226, 194);
+    position:sticky;
+    top:0px;
+    padding:5px 0px;
+}
+header div img{
+    width:var(--height-images);
+    height:auto;
+    //border-top-right-radius: 50%;
+    //border-top-left-radius: 50%;
+    border-radius: 70% 30% 60% 0%;
+    cursor:pointer;
+}
+header div{
+    display:flex;
+    justify-content:center; 
+    align-items:center;
+    width:max-content;
+    height:max-content;
+}
+header div .brand{
+    font-size: 25px;
+    padding:10px;
+    padding-right: 50px;
+    font-weight: bold;
+    color:var(--color-brand);
+}
+header div input{
+    font-size: 20px;
+    padding:5px 20px 5px 10px;
+    outline:none;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border: none;
+}
+header div input:focus{
+    box-shadow: 0px 0px 10px var(--color-brand);
+
+}
+header div label{
+    font-size: 20px;
+    padding:6px;
+    background-color: rgb(192, 164, 105);
+    cursor:pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+div ul li{
+    list-style-type: none;
+    display: inline-block;
+    text-align: center;
+    margin-right: -4px;
+    padding:0px 10px;  
+}
+header div #user_location{
+    position:relative;
+    padding:0px;
+    background-color: aliceblue;
+    padding:22px 30px 0px 0px;
+    border-radius: 15px;
+    cursor:pointer;
+}
+#user_location span{
+    font-size: larger;
+    padding-left:60px;
+}
+header div li .user_avatar{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    position:absolute;
+    bottom:0px;
+}
+header div li .dropdown_option{
+    position:absolute;
+    left:0px;
+    top:50px;
+    padding:0px;
+    background-color: aliceblue;
+    border-radius: 10%;
+    display:none;
+    width:max-content;
+    
+}
+#user_location:hover .dropdown_option{
+    display:block;
+}
+.dropdown_option li{
+    width:max-content;
+    display:block;
+    text-align: left;
+    font-size: smaller;
+    //background-color: aliceblue;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left: 15px;
+}
+div ul li:hover .second_menu{
+    display:block;
+}
+div li a{
+    text-decoration: none;
+    color: rgb(65, 63, 63);
+    font-size: 20px;
+}
+div li a:hover{
+    color:rgb(9, 198, 9);
+}
+div .first_menu{
+    position:relative;
+}
+div .second_menu{
+    position:absolute;
+    top:75px;
+    padding:0px;
+    display:none;
+    left:-10px;
+    background-color: white;
+}
+div .second_menu li{
+    list-style-type: none;
+    display:inline-block;
+    text-align: left;
+    width:200px;
+    padding:0px;
+    height:45px;
+    line-height:45px;
+    padding-left: 14px;
+}
+div .second_menu li:hover{
+    background-color: rgb(160, 251, 251);
+}
+div .second_menu li:hover .third_menu{
+    display:block;
+}
+div .third_menu{
+    position:absolute;
+    left:200px;
+    top:0px;
+    display:none;
+    width:255px;
+    background-color: white;
+}
+div .second_menu a{
+    font-size: 18px;
+    color:rgb(48, 35, 35);
+}
+header .first_menu:focus .second_menu_box{
+    top:95px;
+}
+.second_menu_box .third_menu_box{
+    padding:0px;
+}

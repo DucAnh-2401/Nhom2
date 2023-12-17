@@ -1,0 +1,106 @@
+<main class="user_management">
+	<div class="management_area">
+		<div class="userinfo_management">
+			<img class="user_avatar" src="./img/logo.png" alt="avatar" title="avatar">
+			<span id="user_name">{{username}}</span><br>
+			<span id="user_position">{{userposition}}</span>
+		</div>
+		<div class="user_management_tools" id="option_management">
+			<ul>
+				<li><a href="#">
+						<i class="fa-solid fa-book"></i>
+						Đăng bài miễn phí
+					</a></li>
+				<li class="first_menu">
+					<a href="user_management">
+						<i class="fa-solid fa-gear"></i>
+						Quản lý thông tin người dùng
+						<ul class="second_menu">
+							<li><a href="#">Quản lý bài đăng</a></li>
+							<li><a href="user_management">Quản lý thông tin người dùng</a></li>
+
+						</ul>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<button id="insert_user">
+		<a href='insert_user'>+</a>
+	</button>
+	<table class="user_information" style="border-spacing:0px ;border:solid 1px rgb(58, 46, 46)">
+		<caption>Thông tin tài khoản trên hệ thống</caption>
+		
+		<tr>
+			<th>Id</th>
+			<th>Vai trò</th>
+			<th>Họ và tên</th>
+			<th>Tên đăng nhập</th>
+			<th>Email</th>
+			<th>Mật Khẩu</th>
+			<th>Tùy chọn</th>
+		</tr>
+		{{#each users}}
+		<tr>
+			<td>{{this._id}}</td>
+			<td>{{this.userposition}}</td>
+			<td>{{this.username}}</td>
+			<td>{{this.username_sign}}</td>
+			<td>{{this.useremail}}</td>
+			<td>{{this.userpassword}}</td>
+			<td class="user_choose_options">
+				<a href="user/{{this.username_sign}}">
+					<span class="options_management">
+						<i class="fa-solid fa-pen"></i>
+						<span class="option_title">Chỉnh sửa</span>
+					</span>
+				</a>
+				<a >
+					<span class="options_management">
+						<span class="option_title option_title_right" style="color:red">Xóa</span>
+						<i class="fa-solid fa-trash" style="color:red" data-id="{{this._id}}"></i>
+					</span>
+				</a>
+			</td>
+		</tr>
+		{{/each}}
+	</table>
+		
+</main>
+<form id="deleteForm" action="/delete" method="POST">
+	<input type="hidden" id="deleteItemId" name="itemId" value="">
+</form>
+<div class="confirm_delete" id="confirm_delete_user">
+	<div class="confirm_delete_box">
+		<p>Xóa ?</p>
+		<p>Bạn chắc chắn muốn xóa người dùng này ?</p>
+		<p>
+			<button id="confirm_delete_yes">Xóa</button>
+			<button id="confirm_delete_no">Hủy</button>
+		</p>
+	</div>
+</div>
+	<script>
+		const trashIcons = document.querySelectorAll('.fa-trash')
+		const confirm_delete=document.getElementById('confirm_delete_user')
+		const confirm_delete_yes=document.getElementById('confirm_delete_yes')
+		const confirm_delete_no=document.getElementById('confirm_delete_no')
+		const deleteForm=document.getElementById('deleteForm')
+		const deleteItemId = document.getElementById('deleteItemId');
+		trashIcons.forEach(trashIcon => {
+			trashIcon.addEventListener('click',function(){
+				confirm_delete.style.display='flex';
+				const dataId = trashIcon.dataset.id;
+				confirm_delete_yes.addEventListener('click',function(){
+					deleteItemId.value=dataId
+					deleteForm.submit()
+					
+				})
+
+			})
+			confirm_delete_no.addEventListener('click',function(){
+				confirm_delete.style.display='none';
+			})
+			
+		})
+	</script>

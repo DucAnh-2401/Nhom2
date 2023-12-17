@@ -1,0 +1,49 @@
+.resgister_successful {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(204, 157, 157);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+
+}
+
+.resgister_successful>div {
+    width: 500px;
+    height: 300px;
+    margin-top: 50px;
+    background: white;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px whitesmoke;
+    padding-top: 50px;
+}
+
+.register_successful_box i {
+    font-size: 40px;
+    color: rgb(9, 198, 19);
+    border-radius: 50%;
+    box-shadow: 0px 0px 15px rgb(8, 198, 18);
+}
+
+.register_successful_box p {
+    font-size: 30px;
+    margin: 10px 0px 20px;
+}
+
+.register_successful_box button {
+    padding: 5px 10px;
+    font-size: 20px;
+    background-color: rgb(15, 15, 209);
+    border-color: rgb(15, 15, 209);
+    border-radius: 5px;
+    cursor:pointer;
+}
+
+.register_successful_box button a {
+    text-decoration: none;
+    color: whitesmoke;
+}

@@ -1,0 +1,114 @@
+<div class="user_profile_detail">
+    <div class="banner_and_avatar">
+        <div id="user_avatar"></div>
+        <p>Đức Nguyễn</p>
+    </div>
+    <div class="content_user_profile">
+        <div class="basic_user_information">
+            <div class="header_basic_user_info">
+                <ul>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Bạn bè</a></li>
+                </ul>
+            </div>
+            <p>Vai trò <span style="font-weight:bolder">Admin</span></p>
+            <p>Sống và làm việc tại <span style="font-weight:bolder">Hà Nội</span></p>
+            <p>Kinh nghiệm làm việc </p>
+            <p>Quê quán </p>
+            <p>Sinh ngày </p>
+            <p>Giới tính </p>
+            <p>Tình trạng mối quan hệ</p>
+            <button type="button" id="update_profile_button">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Chỉnh sửa thông tin chi tiết
+            </button>
+        </div>
+        <div class="user_post_information">
+            {{#each posts}}
+            <div class="post">
+                <div class="post_header">
+                    <img class="user_avatar" src="{{this.avatar}}">
+                    <p>
+                        <span>{{this.username}}</span><br>
+                        <span>{{this.date}}
+
+                        </span>
+                    </p>
+                </div>
+                <div class="post_content">
+                    <p>{{this.decripstion}}</p>
+                    <div class="images">
+                        {{#each images}}
+                        <img src="{{this}}" alt="decripstion image">
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="post_footer">
+                    <div class="like">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>Thích</span>
+                    </div>
+                    <div class="comment">
+                        <i class="fa-solid fa-comment"></i>
+                        <span>Bình luận</span>
+                    </div>
+                    <div class="share">
+                        <i class="fa-solid fa-share"></i>
+                        <span>Chia sẻ</span>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<div class="update_profile_detail">
+    <form action="/updateProfileDetail" method="POST" id="form_update_profile">
+        <div class="header_form_update">
+            <img src="https://leplateau.edu.vn/wp-content/uploads/2023/10/hinh-anh-cute-1.jpg" alt="avatar">
+            <p>Đức Nguyễn</p>
+        </div>
+        <div class="content_form_update">
+            <ul>
+                <li>Sống và làm việc tại:
+                    <input type="text" name="address">
+                </li>
+                <li>Kinh nghiệm làm việc:<br>
+                    <textarea name="experience" id="" cols="30" rows="3"></textarea>
+                </li>
+                <li>Quê quán:
+                    <input type="text" name="birthplace">
+                </li>
+                <li>Ngày sinh:
+                    <input type="date" name="birthday">
+                </li>
+                <li>Giới tính:
+                    <label for="male">Nam</label>
+                    <input type="radio" id="male" name="gender" value="male" checked>
+                    <label for="female">Nữ</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                </li>
+                <li>Tình trạng mối quan hệ:
+                    <select name="relationshipStatus">
+                        <option value="single">Độc thân</option>
+                        <option value="married">Đã kết hôn</option>
+                        <option value="widow">Góa</option>
+                        <option value="complicated">Có mối quan hệ phức tạp</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <div class="footer_form_update">
+            <button type="submit">Lưu</button>
+            <button type="button" id="exit_update_profile">Thoát</button>
+        </div>
+    </form>
+</div>
+<script>
+
+    const user_login = document.getElementById('user_login');
+    const user_register_new = document.getElementById('user_register_new');
+    user_login.style.display = 'none';
+    user_register_new.style.display = 'none';
+
+</script>

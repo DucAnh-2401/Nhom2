@@ -1,0 +1,19 @@
+@import 'header';
+@import 'footer';
+@import 'home';
+@import 'register';
+@import 'sign_in';
+@import 'user_management';
+@import 'user_register';
+@import 'user_detail';
+@import 'user_profile';
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+    font-family: "Roboto Condensed";
+}
+:root{
+    --color-brand:rgb(9,198,9);
+    --height-images:80px;
+}

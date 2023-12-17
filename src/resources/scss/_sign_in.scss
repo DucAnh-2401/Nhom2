@@ -1,0 +1,19 @@
+#register_form div:first-child .user_position,
+#register_form div:first-child .user-name-box,
+#register_form div:first-child .user-confirm-box{
+    display:none;
+}
+#register_form .other_login_box{
+    display:none;
+}
+#register_form .rememberme_checkbox{
+    margin:0px;
+    font-size:18px;
+    text-align: left;
+    margin-left: 50px;
+}
+#register_form .rememberme_checkbox span,
+#register_form .rememberme_checkbox a{
+    display:inline-block;
+    padding:1px 0px;
+}

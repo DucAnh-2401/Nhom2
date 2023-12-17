@@ -1,0 +1,330 @@
+main{
+	display:grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	padding:20px 60px 10px;
+	gap:5px;
+	max-height:600px;
+}
+main .aside_left, main .aside_right , main content{
+	background:#fff;
+	border: solid 1px wheat;
+	padding: 20px;
+	font-size: 18px;
+	height:100%;
+}
+main .user_avatar{
+	width:var(--height-images);
+	height:auto;
+	border-radius: 50%;
+
+}
+main .aside_left .header_aside_left{
+	position: relative;
+	z-index: 1;
+}
+main .aside_left .header_aside_left i{
+	color: blue;
+	position: absolute;
+	top:60px;
+	left: 60px;
+	font-size: 15px;
+}
+main .aside_left .content_aside_left ul{
+	margin-top: 25px;
+}
+main .aside_left .content_aside_left li{
+	list-style-type: none;
+	line-height: 45px;
+	height:45px;
+	padding: 0px;
+	width: 250px;
+	padding:0px 10px;
+	text-align: left;
+	display: block;
+}
+main .aside_left .content_aside_left li:hover{
+	background-color: rgb(224, 224, 224);
+	border-radius: 10px;
+}
+.aside_left .content_aside_left li:hover .second_menu{
+	top:20px;
+}
+.aside_left .content_aside_left li a{
+	font-size: 18px;
+}
+
+.aside_left .content_aside_left ul{
+	padding:0px;
+}
+.aside_left .content_aside_left .second_menu{
+	width:max-content;
+	height: max-content;
+	top:21px;
+	left: 0px;
+	border-radius: 10px;
+}
+.aside_left .header_aside_left{
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+.header_aside_left div{
+	display:block;
+	width:max-content;
+}
+.header_aside_left div:last-child{
+	max-width: 100px;
+}
+.header_aside_left #user_name{
+	font-size: 2rem;
+	padding-left: 30px;
+}
+content{
+	overflow:scroll;
+	max-height: 550px;
+}
+content form{
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+	border-bottom: solid 1px #d1cbcb;
+	padding-bottom: 20px;
+}
+content form input{
+	width: 350px;
+	min-width: 350px;
+	height: var(--height-images);
+	min-height: var(--height-images);
+	font-size: 18px;
+	padding: 10px;
+	outline: #fff;
+	margin:0px 10px;
+}
+content form button {
+	padding: 5px 15px;
+	font-size: 15px;
+	width: max-content;
+	height: max-content;
+	display:block;
+	cursor: pointer;
+	margin-bottom: -20px;
+	background-color: var(--color-brand);
+	font-weight: bold;
+	color:#fff;
+	outline:none;
+	border-color: var(--color-brand);
+	border-radius: 5px;
+}
+content form button:active{
+	background-color: rgb(79, 220, 79);
+}
+content .post{
+	border-bottom: solid 1px #d1cbcb;
+}
+.post .post_header{
+	margin-bottom: 10px;
+	margin-top:20px;
+	padding-left: 10px;
+	display:flex;
+	justify-content: left;
+}
+.post .post_header p{
+	height:70px;
+	text-align: center;
+	padding:10px;
+	margin-bottom:0px;
+}
+.post .post_header .user_avatar{
+	width:70px; 
+	height:70px;
+	border-radius: 50%;
+}
+.post .post_content{
+	margin-bottom: 20px;
+}
+.post .post_content .images{
+	display:grid;
+	grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+	column-gap: 2px;
+}
+.images img{
+	width:100%;
+	height:auto;
+}
+.post .post_footer{
+	display:grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	text-align: center;
+	cursor:pointer;
+	border-top: solid 1px #462e2e;
+}
+.post .post_footer div{
+	padding:4px;
+}
+.post .post_footer div:hover{
+
+	color:#462e2e;
+}
+.post .post_footer span{
+	padding-left: 5px;
+}
+.aside_right i{
+	margin-right: 10px;
+}
+.aside_right p{
+	font-size:20px;
+	color:black;
+	margin-bottom: 10px;
+}
+.aside_right select{
+	padding: 4px 10px;
+	font-size: 18px;
+	margin:5px;
+	outline:none;
+}
+.aside_right span{
+	padding:5px 5px;
+	color:rgb(44, 48, 48);
+}
+.aside_right .quick_searching p:nth-child(2){
+	text-align: center;
+}
+.quick_searching p:nth-child(2) span{
+	border-bottom: solid 2px var(--color-brand);
+	background-color: rgb(240, 227, 210);
+	padding:5px 20px;
+	border-radius: 10px;
+	cursor:pointer;
+}
+.quick_searching p:nth-child(2) span:active{
+	padding:4px 19px;
+}
+.aside_right button{
+	padding: 3px 10px;
+	font-size: 16px;
+	font-weight: bolder;
+	color:#fff;
+	background-color: var(--color-brand);
+	outline:none;
+	border-color:  var(--color-brand);
+	border-radius: 5px;
+	cursor: pointer;
+}
+#post_action_if_have_account
+{
+	position:absolute;
+	z-index: 3;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color: #fffafa43;
+	display:flex;
+	justify-content:center;
+	display:none;
+	transition:all 1s ;
+}
+#post_action_if_have_account #form_post_official{
+	padding:20px;
+	background-color: white;
+	width:500px;
+	height:max-content;
+	margin-top: 50px;
+	border-radius: 20px;
+}
+#form_post_official .post_box{
+	margin:7px 0px;
+	font-family: 'Times New Roman', Times, serif;
+}
+.post_box input{
+	border:none;
+	border-bottom: solid 1px #d65d5d;
+	outline:none;
+	padding-left: 10px;
+}
+.post_box textarea{
+	border-color: #d65d5d;
+	padding:10px;
+	outline:none;
+}
+#form_post_official .post_box_submit{
+	text-align: right;
+	border-top:solid 1px #b96767;
+	padding:10px 0px;
+	padding-right: 20px;
+}
+.post_box_submit #post_form_submit{
+	padding:5px 10px;
+	background-color:var(--color-brand);
+	color:#fff;
+	border: none;
+	border-radius: 8px;
+	cursor:pointer;
+	transition: all .3s ease;
+	box-sizing: border-box;
+}
+.post_box_submit #post_form_destroy{
+	padding:5px 10px;
+	color:red;
+	border: none;
+	border-radius: 8px;
+	cursor:pointer;
+	transition: all .3s ease;
+	background-color: rgb(203, 212, 219);
+	box-sizing: border-box;
+}
+#post_form_submit:active,#post_form_destroy:active{
+	transform: scale(.9);
+
+}
+#post_action_if_do_not_have_account{
+	position:absolute;
+	z-index: 3;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color: #fffafa43;
+	display:flex;
+	justify-content: center;
+	display:none;	
+}
+#post_action_if_do_not_have_account .post_action_box{
+	width:500px;
+	height:max-content;
+	background-color: #e1dbdb;
+	padding:20px;
+	padding-top:0px;
+	margin-top: 90px;
+}
+.post_action_box .header_post_action{
+	border-bottom: solid 1px #b37070;
+	padding:5px 0px;
+}
+.header_post_action img{
+	width:50px;
+	border-radius: 70% 30% 60% 0%;
+}
+.post_action_box .content_post_action{
+	padding-top:20px;
+}
+.post_action_box .footer_post_action{
+	text-align:right;
+}
+.footer_post_action button{
+	padding:5px 10px;
+	background-color:var(--color-brand);
+	color:#fff;
+	border: none;
+	border-radius: 8px;
+	cursor:pointer;
+	transition: all .3s ease;
+	box-sizing: border-box;
+}
+.footer_post_action button:last-child{
+	color:red;
+	background-color: rgb(203, 212, 219);
+}
+.footer_post_action button:active{
+	transform: scale(.9);
+}

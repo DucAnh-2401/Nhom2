@@ -1,0 +1,177 @@
+.user_management{
+    display: grid;
+    gap:20px;
+    grid-template-columns: 1fr 3fr;
+    position: relative;
+}
+.management_area {
+    background-color: beige;
+    height:100%;
+    padding:10px;
+    border-radius:10px;
+}
+.management_area .userinfo_management {
+    position: relative;
+}
+.user_management .user_information{
+    caption-side: top;
+}
+.userinfo_management #user_name{
+    font-size: 25px;
+    position: absolute;
+    top:30px;
+    left:100px;
+}
+.userinfo_management #user_position{
+    margin-left: 20px;
+}
+.user_management_tools {
+    padding:0px;
+    margin: 20px 0px 0px;
+    border-top: solid 1px black;
+}
+.user_management_tools ul{
+    margin: 0px;
+    padding:0px;
+}
+.user_management_tools ul li{
+    font-size: 20px;
+    padding:5px 10px;
+    height: 40px;
+    line-height: 40px;
+}
+.user_management_tools  li:hover .second_menu{
+    top:40px;
+    margin: 0px;
+    padding:0px;
+    background-color: white;
+}
+.user_management_tools .second_menu li{
+    height:max-content;
+    width:220px;
+    margin: 0px;
+    padding:0px;
+   padding-left: 20px;
+}
+.user_management_tools .second_menu li:hover{
+    background-color:white
+}
+.user_infomation caption{
+    font-size: 20px;
+}
+.user_management .user_information caption{
+    font-size: 30px;
+    margin-bottom:0px;
+    text-align: center;
+    padding:0px;
+    padding-bottom:10px;
+   
+}
+.user_information td,.user_information th{
+    
+    padding:5px 10px;
+    border:solid 1px rgb(58, 46, 46);
+    border-spacing: 0px;
+    text-align: center;
+}
+
+.user_information .user_choose_options a{
+    text-decoration: none;
+}
+.user_information td i{
+    padding:0px 5px;
+    cursor:pointer;
+}
+
+.user_information td .options_management{
+    display:inline-block;
+    position:relative;
+}
+.user_information td .options_management:hover span{
+    display:block;
+}
+.user_information td .options_management span{
+    position:absolute;
+    bottom:0px;
+    right:30px;
+    width:max-content;
+    padding:5px 10px ;
+    background-color:aliceblue;
+    border-radius: 5px;
+    display:none;
+}
+.user_information td .options_management .option_title_right{
+    left:30px;
+}
+.confirm_delete{
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 3; 
+    display:none;
+}
+.confirm_delete .confirm_delete_box{
+    width:400px;
+    background-color: white;
+    height:max-content;
+    padding:20px;
+    margin-top:50px;
+    padding-top: 0px;
+}
+.confirm_delete .confirm_delete_box p{
+    margin:0px;
+}
+.confirm_delete .confirm_delete_box p:first-child{
+    font-size: 30px;
+    border-bottom: solid 2px black;
+}
+.confirm_delete .confirm_delete_box p:nth-child(2){
+    margin:10px 0px;
+    font-size: large;
+    margin-bottom: 50px;
+}
+.confirm_delete .confirm_delete_box p:last-child{
+    text-align: right;
+}
+.confirm_delete .confirm_delete_box #confirm_delete_yes{
+    padding:5px 10px;
+    font-size: small;
+    margin-right: 10px;
+    background-color: red;
+    border-color: red;
+}
+.confirm_delete .confirm_delete_box #confirm_delete_no{
+    padding:5px 10px;
+    font-size: small;
+    background-color: rgb(96, 75, 75);
+    border-color:rgb(128, 108, 108);
+}
+.user_management #insert_user{
+    position: absolute;
+    right:60px;
+    top:40px;
+    padding:2px 10px;
+    font-size: 20px;
+    border: none;
+    background-color: antiquewhite;
+    color: rgb(9,198,19);
+    border-radius: 20% 20% 20% 20%;
+}
+.user_management #insert_user:hover::before{
+    display: block;
+    content:'Thêm mới';
+    position: absolute;
+    width:max-content; 
+    background-color: antiquewhite;
+    right:35px;
+    padding:2px 10px;
+    border-radius: 10px;
+}
+.user_management #insert_user a{
+    text-decoration: none;
+}

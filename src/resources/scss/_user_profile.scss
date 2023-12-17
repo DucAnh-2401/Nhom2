@@ -1,0 +1,158 @@
+.user_profile_detail{
+    padding:0px 100px;
+}
+.user_profile_detail .banner_and_avatar{
+    background-image:url(https://inkythuatso.com/uploads/thumbnails/800/2022/04/anh-bia-facebook-anime-nhat-041506181-07-22-54-04.jpg);
+    width:100%;
+    min-width: 500px;
+    height:200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    position:relative;
+}
+.banner_and_avatar #user_avatar{
+    width:100px;
+    height:100px;
+    background-image: url(https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/08/hinh-nen-dien-thoai-anime-2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    border-radius: 50%;
+    position:absolute;
+    bottom:20px;
+    left:20px;
+}
+.banner_and_avatar p{
+    color:rgb(19, 10, 10);
+    position:absolute;
+    bottom:20px;
+    left:130px;
+    font-size: larger;
+}
+.user_profile_detail .content_user_profile{
+    display:grid;
+    gap:30px;
+    grid-template-columns: 2fr 4fr;
+    padding-top:10px;
+}
+.content_user_profile .basic_user_information{
+    min-width: 200px;
+    height:max-content;
+    border-bottom: solid 1px #130b0b;
+    padding-bottom: 30px;
+}
+.basic_user_information p{
+    margin:0px;
+    padding:3px 10px;
+    font-size: large;
+}
+.basic_user_information p:hover{
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+.basic_user_information p span:hover{
+    cursor:pointer;
+    text-decoration: underline;
+}
+.basic_user_information button{
+    padding:3px 20px;
+    border:none;
+    font-size: larger;
+    border-radius: 10px;
+}
+.basic_user_information button:hover{
+    text-decoration: underline;
+}
+.basic_user_information .header_basic_user_info{
+    margin:0px;
+    border-bottom: solid 1px black;
+}
+.header_basic_user_info ul{
+    margin:0px;
+    padding: 0px;
+    margin-bottom:5px ;
+}
+.header_basic_user_info ul li{
+    border-right:solid 1px black;
+}
+.header_basic_user_info ul li:last-child{
+    border:none;
+}
+.header_basic_user_info ul li a{
+    font-size: 18px;
+    font-weight: 400;
+}
+.header_basic_user_info ul li a:hover{
+    color:black;
+    text-decoration: underline;
+}
+.content_user_profile .user_post_information{
+    max-height: 100vh;  
+    overflow-y: scroll;
+}
+.update_profile_detail{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgba(91, 69, 69, 0.076);
+    z-index: 2;
+    display:flex;
+    justify-content: center;
+   
+}
+.update_profile_detail #form_update_profile{
+    width:max-content;
+    height:max-content;
+    padding:20px;
+    background-color: white;
+    margin-top:100px;
+    border-radius: 20px;
+}
+#form_update_profile .header_form_update{
+    text-align: center;
+}
+.header_form_update img{
+    width:100px; 
+    height:auto;
+    border-radius: 50%;
+}
+#form_update_profile .content_form_update{
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+.content_form_update ul{
+    margin:0px;
+    padding:0px;
+}
+.content_form_update ul li{
+    display:block;
+    list-style: none;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: large;
+}
+.update_profile_detail .footer_form_update{
+    border-top: solid 1px #ddd;
+    text-align: right;
+    padding-right:20px;
+}
+.footer_form_update button{
+    padding:4px 10px;
+    border:none;
+    font-size: larger;
+    border-radius: 3px;
+}
+.footer_form_update button:first-child{
+    background-color: var(--color-brand);
+    color:aliceblue;
+    margin-right: 5px;
+}
+.footer_form_update button:hover{
+    opacity:0.8;
+}
+.footer_form_update button:active{
+    transform:scale(0.9);
+}
