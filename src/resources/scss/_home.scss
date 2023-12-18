@@ -156,13 +156,14 @@ content .post{
 	grid-template-columns: 1fr 1fr 1fr;
 	text-align: center;
 	cursor:pointer;
-	border-top: solid 1px #462e2e;
+	padding:5px 0px;
+	border-top: solid 1px #d1cbcb;
 }
 .post .post_footer div{
 	padding:4px;
 }
 .post .post_footer div:hover{
-
+	background-color: #d1cbcb;
 	color:#462e2e;
 }
 .post .post_footer span{
