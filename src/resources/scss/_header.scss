@@ -70,6 +70,10 @@ header div #user_location{
     font-size: larger;
     padding-left:60px;
 }
+#user_location img{
+    object-fit: cover;
+    object-position: center;
+}
 header div li .user_avatar{
     width:50px;
     height:50px;

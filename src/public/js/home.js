@@ -10,7 +10,7 @@ if (user_position_content == 'Admin') {
 } else {
     option_management.style = 'display:none';
 }
-if (user_position_content == 'Position') {
+if (user_position_content == 'Position'||user_position_content=="") {
     user_logout.style.display = 'none';
     user_profile.style.display = 'none';
 } else {

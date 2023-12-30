@@ -67,6 +67,10 @@ header div #user_location {
   font-size: larger;
   padding-left: 60px; }
 
+#user_location img {
+  object-fit: cover;
+  object-position: center; }
+
 header div li .user_avatar {
   width: 50px;
   height: 50px;
@@ -223,6 +227,9 @@ footer div li {
 footer div li i {
   color: #09cb8a; }
 
+.hidden {
+  display: none; }
+
 main {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
@@ -239,8 +246,10 @@ main .aside_left, main .aside_right, main content {
 
 main .user_avatar {
   width: var(--height-images);
-  height: auto;
-  border-radius: 50%; }
+  height: var(--height-images);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center; }
 
 main .aside_left .header_aside_left {
   position: relative;
@@ -341,9 +350,6 @@ content form button {
 content form button:active {
   background-color: #4fdc4f; }
 
-content .post {
-  border-bottom: solid 1px #d1cbcb; }
-
 .post .post_header {
   margin-bottom: 10px;
   margin-top: 20px;
@@ -365,6 +371,12 @@ content .post {
 .post .post_content {
   margin-bottom: 20px; }
 
+.post_content .content_decripstion {
+  display: grid; }
+
+.content_decripstion p {
+  margin: 0; }
+
 .post .post_content .images {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -380,7 +392,8 @@ content .post {
   text-align: center;
   cursor: pointer;
   padding: 5px 0px;
-  border-top: solid 1px #d1cbcb; }
+  border-top: solid 1px #d1cbcb;
+  border-bottom: solid 1px #d1cbcb; }
 
 .post .post_footer div {
   padding: 4px; }
@@ -413,15 +426,15 @@ content .post {
 .aside_right .quick_searching p:nth-child(2) {
   text-align: center; }
 
-.quick_searching p:nth-child(2) span {
-  border-bottom: solid 2px var(--color-brand);
-  background-color: #f0e3d2;
+.quick_searching p:nth-child(2) > button {
+  background-color: var(--color-brand);
   padding: 5px 20px;
   border-radius: 10px;
-  cursor: pointer; }
+  cursor: pointer;
+  color: white; }
 
-.quick_searching p:nth-child(2) span:active {
-  padding: 4px 19px; }
+.quick_searching p:nth-child(2) > button:hover {
+  transform: scale(0.9); }
 
 .aside_right button {
   padding: 3px 10px;
@@ -445,7 +458,7 @@ content .post {
   display: flex;
   justify-content: center;
   display: none;
-  transition: all 1s; }
+  transition: all 3s ease-in; }
 
 #post_action_if_have_account #form_post_official {
   padding: 20px;
@@ -695,6 +708,30 @@ div:first-child p:last-child button {
   padding: 10px;
   border-radius: 10px; }
 
+.user_management .user_information_area {
+  max-height: 500px;
+  overflow-y: scroll; }
+
+.user_information_area .button_management {
+  margin: 20px 0px; }
+
+.button_management > button {
+  padding: 5px 15px;
+  font-size: larger;
+  color: white;
+  background-color: var(--color-brand);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px; }
+
+.button_management > button:active {
+  transform: scale(0.9); }
+
+.button_management > button > a {
+  color: aliceblue;
+  text-decoration: none; }
+
 .management_area .userinfo_management {
   position: relative; }
 
@@ -832,17 +869,6 @@ div:first-child p:last-child button {
   background-color: #604b4b;
   border-color: #806c6c; }
 
-.user_management #insert_user {
-  position: absolute;
-  right: 60px;
-  top: 40px;
-  padding: 2px 10px;
-  font-size: 20px;
-  border: none;
-  background-color: antiquewhite;
-  color: #09c613;
-  border-radius: 20% 20% 20% 20%; }
-
 .user_management #insert_user:hover::before {
   display: block;
   content: 'Thêm mới';
@@ -953,6 +979,9 @@ div:first-child p:last-child button {
   position: relative;
   background-color: #eadfdf; }
 
+.hidden {
+  display: none; }
+
 .user_profile_detail {
   padding: 0px 100px; }
 
@@ -969,14 +998,16 @@ div:first-child p:last-child button {
 .banner_and_avatar #user_avatar {
   width: 100px;
   height: 100px;
-  background-image: url(https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/08/hinh-nen-dien-thoai-anime-2.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  border-radius: 50%;
   position: absolute;
   bottom: 20px;
   left: 20px; }
+
+.banner_and_avatar #user_avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%; }
 
 .banner_and_avatar p {
   color: #130a0a;
@@ -1011,10 +1042,14 @@ div:first-child p:last-child button {
   text-decoration: underline; }
 
 .basic_user_information button {
-  padding: 3px 20px;
+  padding: 3px 10px;
   border: none;
   font-size: larger;
-  border-radius: 10px; }
+  border-radius: 10px;
+  background-color: none; }
+
+.basic_user_information #update_profile_button, .basic_user_information #update_account_button {
+  background-color: white; }
 
 .basic_user_information button:hover {
   text-decoration: underline; }
@@ -1046,6 +1081,10 @@ div:first-child p:last-child button {
   max-height: 100vh;
   overflow-y: scroll; }
 
+.user_post_information .post_header .user_avatar {
+  object-fit: cover;
+  object-position: center; }
+
 .update_profile_detail {
   position: absolute;
   top: 0;
@@ -1055,7 +1094,8 @@ div:first-child p:last-child button {
   background-color: rgba(91, 69, 69, 0.076);
   z-index: 2;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  display: none; }
 
 .update_profile_detail #form_update_profile {
   width: max-content;
@@ -1070,8 +1110,16 @@ div:first-child p:last-child button {
 
 .header_form_update img {
   width: 100px;
-  height: auto;
+  height: 100px;
+  object-fit: cover;
+  object-position: center;
   border-radius: 50%; }
+
+.header_form_update input {
+  width: max-content;
+  border: none;
+  outline: none;
+  text-align: center; }
 
 #form_update_profile .content_form_update {
   margin-top: 30px;
@@ -1087,6 +1135,10 @@ div:first-child p:last-child button {
   margin-bottom: 5px;
   text-align: left;
   font-size: large; }
+
+.content_form_update li input,
+.content_form_update li textarea {
+  padding-left: 10px; }
 
 .update_profile_detail .footer_form_update {
   border-top: solid 1px #ddd;
@@ -1109,6 +1161,104 @@ div:first-child p:last-child button {
 
 .footer_form_update button:active {
   transform: scale(0.9); }
+
+.update_account {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #dddddd4a;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  display: none; }
+
+.update_account .card-outline-secondary {
+  width: 40%;
+  height: max-content;
+  font-size: large;
+  margin-top: 40px; }
+
+.card-outline-secondary .card-body .footer_form {
+  text-align: right; }
+
+.footer_form .btn-success {
+  padding: 5px 15px; }
+
+.chart_area {
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 30px; }
+
+.chart_area .gender_chart {
+  width: 600px;
+  min-width: 200px;
+  margin: 0px 20px; }
+
+.chart_area .location_chart {
+  width: 300px;
+  min-width: 200px;
+  margin: 0px 20px; }
+
+.hidden {
+  display: none; }
+
+.post-detail {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  background-color: rgba(240, 248, 255, 0.1);
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center; }
+
+.post-detail .post-detail-child {
+  width: 800px;
+  height: max-content;
+  margin-top: 50px;
+  background-color: white;
+  border-radius: 30px;
+  position: relative; }
+
+.confirm_delete_post {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ddd4d43e;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+  display: none;
+  transition: all 2s ease-out; }
+
+.confirm_delete_post .confirm_delete_box {
+  margin-top: 50px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  height: max-content; }
+
+.user_choose_options .remove-post-detail {
+  position: absolute;
+  padding: 15px;
+  top: 0px;
+  right: 0px;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  font-size: smaller; }
+
+.user_choose_options .remove-post-detail:hover {
+  background-color: aliceblue; }
 
 * {
   margin: 0px;

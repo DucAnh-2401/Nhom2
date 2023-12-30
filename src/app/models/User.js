@@ -7,5 +7,12 @@ const User= new Schema({
     username_sign:{type:String},
     userpassword:{type:String},
     confirmpassword:{type:String},
+    avatar:{type:String},
+    address:{type:String},
+    experience:{type:String},
+    birthplace:{type:String},
+    birthday:{type:Date},
+    gender:{type:String},
+    relationshipStatus:{type:String}
 });
 module.exports = mongoose.model('User',User);

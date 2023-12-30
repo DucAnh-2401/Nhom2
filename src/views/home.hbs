@@ -2,7 +2,7 @@
     <aside class="aside_left">
         <div class="header_aside_left">
             <div class="avatar_image">
-                <img class="user_avatar" src="./img/logo.png" alt="avatar" title="avatar"><br>
+                <img class="user_avatar" src="../{{avatarpath}}" alt="avatar" title="avatar"><br>
                 <span id="user_position">{{userposition}}</span>
             </div>
             <div>
@@ -19,8 +19,9 @@
                         <i class="fa-solid fa-gear"></i>
                         Bảng điều khiển
                         <ul class="second_menu">
-                            <li><a href="#">Quản lý bài đăng</a></li>
+                            <li><a href="user/post_management">Quản lý bài đăng</a></li>
                             <li><a href="user_management">Quản lý thông tin người dùng</a></li>
+                            <li><a href="user/chart">Biểu đồ thống kê</a></li>
                         </ul>
                     </a></li>
             </ul>
@@ -28,7 +29,7 @@
     </aside>
     <content>
         <form method="POST" action="/posting">
-            <img class="user_avatar" src="./img/logo.png" alt="avatar" title="avatar">
+            <img class="user_avatar" src="../{{avatarpath}}" alt="avatar" title="avatar">
             <input type="text" id="post_form" placeholder="Bạn muốn đăng gì ?...">
             </input>
             <button type="button">Đăng bài</button>
@@ -36,17 +37,26 @@
         {{#each posts}}
         <div class="post">
             <div class="post_header">
-                <img class="user_avatar" src="{{this.avatar}}">
+                <img class="user_avatar" src="../{{this.avatar}}">
                 <p>
                     <span>{{this.username}}</span><br>
                     <span>{{this.date}}</span>
                 </p>
             </div>
             <div class="post_content">
-                <p>{{this.decripstion}}</p>
+                <div class="content_decripstion">
+                    <p class="content_container">Địa điểm :<span>{{this.location}}</span></p>
+                    <p class="content_container">Công việc : <span>{{this.job}}</span></p>
+                    <p class="content_container">Ngày bắt đầu :<span>{{this.startday}}</span></p>
+                    <p class="content_container">Ngày kết thúc :<span>{{this.enday}}</span></p>
+                    <p class="content_container">Kinh nghiệm làm việc : <span>{{this.experience}}</span></p>
+                    <p class="content_container">Mức lương thấp nhất :<span>{{this.lowest_salary}}</span></p>
+                    <p class="content_container">Mức lương cao nhất : <span>{{this.highest_salary}}</span></p>
+                    <p class="content_container">Mô tả công việc :<span>{{this.decripstion}}</span></p>
+                </div>
                 <div class="images">
                     {{#each images}}
-                    <img src="{{this}}" alt="decripstion image">
+                    <img src="./{{this}}" alt="decripstion image">
                     {{/each}}
                 </div>
             </div>
@@ -69,73 +79,75 @@
     </content>
     <aside class="aside_right">
         <div class="quick_searching">
-            <p><i class="fa-solid fa-magnifying-glass"></i>Tìm nhiều hơn</p>
-            <p>
-                <span>Ứng viên</span>
-                <span>Việc làm</span>
-            </p>
-            <select class="industry">
-                <option value="Ngành nghề">Ngành nghề</option>
-                <option value="Bán hàng">Bán hàng</option>
-                <option value="Tư vấn bảo hiểm">Tư vấn bảo hiểm</option>
-                <option value="Báo chí/Biên tập viên ">Báo chí/Biên tập viên </option>
-                <option value="Bất động sản">Bất động sản</option>
-                <option value="Biên dịch/Phiên dịch">Biên dịch/Phiên dịch</option>
-                <option value="Bưu chính viễn thông">Bưu chính viễn thông</option>
-                <option value="Công nghệ thông tin">Công nghệ thông tin</option>
-            </select>
-            <select class="location">
-                <option value="Địa điểm">Địa điểm</option>
-                <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                <option value="Nghệ An">Nghệ An</option>
-                <option value="Thanh Hoa">Thanh Hoa</option>
-                <option value="Lâm Đồng">Lâm Đồng</option>
-                <option value="Phú Yên">Phú Yên</option>
-                <option value="Khánh Hòa">Khánh Hòa</option>
-                <option value="Long An">Long An</option>
-                <option value="An Giang">An Giang</option>
-                <option value="Dak Lak">Dak Lak</option>
-                <option value="Đắk Nông">Đắk Nông</option>
-                <option value="Bình Dương">Bình Dương</option>
-                <option value="Bình Phước">Bình Phước</option>
-                <option value="Bình Thuận">Bình Thuận</option>
-                <option value="Bến Tre">Bến Tre</option>
-            </select><br>
-            <span>Mức lương</span><br>
-            <select class="smallest_salary">
-                <option value="Thấp nhất">Thấp nhất</option>
-                <option value="1 triệu">1 triệu</option>
-                <option value="2 triệu">2 triệu</option>
-                <option value="3 triệu">3 triệu</option>
-                <option value="4 triệu">4 triệu</option>
-                <option value="5 triệu">5 triệu</option>
-                <option value="6 triệu">6 triệu</option>
-                <option value="7 triệu">7 triệu</option>
-                <option value="8 triệu">8 triệu</option>
-                <option value="9 triệu">9 triệu</option>
-                <option value="10 triệu">10 triệu</option>
-                <option value="Trên 10 triệu">Trên 10 triệu</option>
-            </select>
-            <select class="highest_salary">
-                <option value="Cao nhất">Cao nhất</option>
-                <option value="1 triệu">1 triệu</option>
-                <option value="2 triệu">2 triệu</option>
-                <option value="3 triệu">3 triệu</option>
-                <option value="4 triệu">4 triệu</option>
-                <option value="5 triệu">5 triệu</option>
-                <option value="6 triệu">6 triệu</option>
-                <option value="7 triệu">7 triệu</option>
-                <option value="8 triệu">8 triệu</option>
-                <option value="9 triệu">9 triệu</option>
-                <option value="10 triệu">10 triệu</option>
-                <option value="Trên 10 triệu">Trên 10 triệu</option>
-            </select>
-            <button type="button">Tìm ngay !</button>
+            <form action="/searching" method="get">
+                <p><i class="fa-solid fa-magnifying-glass"></i>Tìm nhiều hơn</p>
+                <p>
+                    <button type="button">Ứng viên</button>
+                    <button type="button">Việc làm</button>
+                </p>
+                <select class="industry" name="job">
+                    <option value="Ngành nghề">Ngành nghề</option>
+                    <option value="Bán hàng">Bán hàng</option>
+                    <option value="Tư vấn bảo hiểm">Tư vấn bảo hiểm</option>
+                    <option value="Báo chí/Biên tập viên ">Báo chí/Biên tập viên </option>
+                    <option value="Bất động sản">Bất động sản</option>
+                    <option value="Biên dịch/Phiên dịch">Biên dịch/Phiên dịch</option>
+                    <option value="Bưu chính viễn thông">Bưu chính viễn thông</option>
+                    <option value="Công nghệ thông tin">Công nghệ thông tin</option>
+                </select>
+                <select class="location" name="location">
+                    <option value="Địa điểm">Địa điểm</option>
+                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                    <option value="Nghệ An">Nghệ An</option>
+                    <option value="Thanh Hoa">Thanh Hoa</option>
+                    <option value="Lâm Đồng">Lâm Đồng</option>
+                    <option value="Phú Yên">Phú Yên</option>
+                    <option value="Khánh Hòa">Khánh Hòa</option>
+                    <option value="Long An">Long An</option>
+                    <option value="An Giang">An Giang</option>
+                    <option value="Dak Lak">Dak Lak</option>
+                    <option value="Đắk Nông">Đắk Nông</option>
+                    <option value="Bình Dương">Bình Dương</option>
+                    <option value="Bình Phước">Bình Phước</option>
+                    <option value="Bình Thuận">Bình Thuận</option>
+                    <option value="Bến Tre">Bến Tre</option>
+                </select><br>
+                <span>Mức lương</span><br>
+                <select class="smallest_salary" name="smallest_salary">
+                    <option value="Thấp nhất">Thấp nhất</option>
+                    <option value="1000000">1 triệu</option>
+                    <option value="2000000">2 triệu</option>
+                    <option value="3000000">3 triệu</option>
+                    <option value="4000000">4 triệu</option>
+                    <option value="5000000">5 triệu</option>
+                    <option value="6000000">6 triệu</option>
+                    <option value="7000000">7 triệu</option>
+                    <option value="8000000">8 triệu</option>
+                    <option value="9000000">9 triệu</option>
+                    <option value="10000000">10 triệu</option>
+                    <option value="1000001">Trên 10 triệu</option>
+                </select>
+                <select class="highest_salary" name="highest_salary">
+                    <option value="Cao nhất">Cao nhất</option>
+                    <option value="1000000">1 triệu</option>
+                    <option value="2000000">2 triệu</option>
+                    <option value="3000000">3 triệu</option>
+                    <option value="4000000">4 triệu</option>
+                    <option value="5000000">5 triệu</option>
+                    <option value="6000000">6 triệu</option>
+                    <option value="7000000">7 triệu</option>
+                    <option value="8000000">8 triệu</option>
+                    <option value="9000000">9 triệu</option>
+                    <option value="10000000">10 triệu</option>
+                    <option value="10000001">Trên 10 triệu</option>
+                </select>
+                <button type="submit">Tìm ngay !</button>
+            </form>
         </div>
     </aside>
 </main>
 <div id="post_action_if_have_account">
-    <form id="form_post_official">
+    <form id="form_post_official" action="/user/user_post" method="post" enctype="multipart/form-data">
         <div class="post_box">
             <label for="location">Địa điểm:</label>
             <input type="text" name="location" id="location"><br>
@@ -147,7 +159,7 @@
         <div class="post_box">
             <label for="times">Thời gian</label>
             <input type="date" name="startday" id="startday"> -
-            <input type="date" name="endday" id="endday"><br>
+            <input type="date" name="enday" id="enday"><br>
         </div>
         <div class="post_box">
             <label for="experience">Kinh nghiệm (tháng):</label>
@@ -157,15 +169,20 @@
             <label for="salary">Mức lương đề nghị:</label>
             <table>
                 <tr>
-                    <td><input type="text" name="lowest_salary" id="lowest_salary" placeholder="Thấp nhất"></td>
+                    <td><input type="number" min=1000000 name="lowest_salary" id="lowest_salary"
+                            placeholder="Thấp nhất"></td>
                     <td style="width: 5%; text-align: center;">-</td>
-                    <td><input type="text" name="highest_salary" id="highest_salary" placeholder='Cao nhất'></td>
+                    <td><input type="number" name="highest_salary" id="highest_salary" placeholder='Cao nhất'></td>
                 </tr>
             </table>
         </div>
         <div class="post_box">
             <label for="decripstion">Mô tả công việc:</label>
-            <textarea name="description" id="description" rows="5" cols="30"></textarea><br>
+            <textarea name="decripstion" id="description" rows="5" cols="30"></textarea><br>
+        </div>
+        <div class="post_box">
+            <label for="images">Ảnh mô tả (nếu có):</label>
+            <input type="file" style="border:none" name="images" multiple>
         </div>
         <div class="post_box post_box_submit">
             <button type="submit" id="post_form_submit">Đăng bài</button>
@@ -181,11 +198,11 @@
         </div>
         <div class="content_post_action">
             <p>Bạn hiện chưa có tài khoản trên hệ thống !<br>
-            Tạo tài khoản ngay để đăng bài ?</p>
+                Tạo tài khoản ngay để đăng bài ?</p>
         </div>
         <div class="footer_post_action">
             <button onclick="window.location='register'">Tạo tài khoản</button>
-            <button id="button_destroy_if_dont_want_create_account"type="button">Hủy</button>
+            <button id="button_destroy_if_dont_want_create_account" type="button">Hủy</button>
         </div>
     </div>
 </div>
@@ -198,17 +215,34 @@
     const button_destroy_if_dont_want_create_account = document.getElementById('button_destroy_if_dont_want_create_account');
     const username_content = username.innerHTML;
     post_form.addEventListener('click', function () {
-        if (username_content == 'Profile') {
-            post_action_if_do_not_have_account.style.display='flex';
+        if (username_content == 'Profile' || username_content == "") {
+            post_action_if_do_not_have_account.style.display = 'flex';
         } else {
             post_action_if_have_account.style.display = 'flex';
         }
     })
     post_form_destroy.addEventListener('click', function () {
-    
+
         post_action_if_have_account.style.display = 'none';
     })
     button_destroy_if_dont_want_create_account.addEventListener('click', function () {
-        post_action_if_do_not_have_account.style.display='none';
+        post_action_if_do_not_have_account.style.display = 'none';
     })
+    //Ẩn những trường không có giá trị trên bài đăng
+    // Lấy danh sách tất cả trường
+    const content_container = document.querySelectorAll('.content_container');
+
+    // Lặp qua từng trường thông tin
+    content_container.forEach(container => {
+        //Lấy giá trị của ô input 
+        const content = container.querySelector('span').textContent;
+        // Kiểm tra giá trị của ô input
+        if (content === '') {
+            // Nếu không có giá trị, ẩn ô input
+            container.classList.add('hidden');
+        } else {
+            // Nếu có giá trị, hiển thị ô input
+            container.classList.remove('hidden');
+        }
+    });
 </script>

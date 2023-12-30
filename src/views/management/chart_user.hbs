@@ -1,0 +1,70 @@
+<div class="chart_area">
+  <div class="gender_chart">
+    <p>Tài khoản trong hệ thống :{{number_of_users}} tài khoản</p>
+    <canvas id="user_chart"></canvas>
+    <input id="male" value="{{male}}" type="hidden">
+    <input id="female" value="{{female}}" type="hidden">
+    <input id="other_gender" value="{{other_gender}}" type="hidden">
+  </div>
+  <div class="location_chart">
+    <p>Top 3 khu vực có nhiều người dùng nhất</p>
+    <canvas id="location_chart"></canvas>
+    <span id="labels_location" style="display:none">{{labels}}</span>
+    <span id="data_location" style="display:none">{{data}}</span>
+  </div>
+</div>
+<script>
+  //Biểu đố giới tính của người dùng
+  const ctx = document.getElementById('user_chart');
+  const male = document.getElementById('male').value;
+  const female = document.getElementById('female').value;
+  const otherGender = document.getElementById('other_gender').value;
+  const labels_gender = ['Nam', 'Nữ', 'Khác'];
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels_gender,
+      datasets: [{
+        label: 'Biểu đồ giới tính',
+        data: [male, female, otherGender],
+        borderWidth: 1,
+        backgroundColor: ['red', 'blue', 'green']
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  //Biểu đồ khu vực người dùng 
+  const ctx1 = document.getElementById('location_chart');
+  const labels_location = document.getElementById('labels_location').textContent;
+  const data_location = document.getElementById('data_location').textContent;
+  console.log(labels_location, data_location);
+  let array_labels=labels_location.split(',');
+  console.log(array_labels);
+  new Chart(ctx1, {
+    type: 'pie',
+    data: {
+      labels: array_labels
+      ,
+      datasets: [{
+        label: 'Biểu đồ khu vực',
+        data: data_location.split(','),
+        borderWidth: 1,
+        backgroundColor: ['red', 'blue', 'green']
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+</script>

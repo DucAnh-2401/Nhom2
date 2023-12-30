@@ -1,0 +1,194 @@
+<main class="user_management">
+    <div class="management_area">
+        <div class="userinfo_management">
+            <img class="user_avatar" src="../../img/logo.png" alt="avatar" title="avatar">
+            <span id="user_name">Đức Nguyễn</span><br>
+            <span id="user_position">Admin</span>
+        </div>
+        <div class="user_management_tools" id="option_management">
+            <ul>
+                <li><a href="#">
+                        <i class="fa-solid fa-book"></i>
+                        Đăng bài miễn phí
+                    </a></li>
+                <li class="first_menu">
+                    <a href="user_management">
+                        <i class="fa-solid fa-gear"></i>
+                        Quản lý thông tin người dùng
+                        <ul class="second_menu">
+                            <li><a href="#">Quản lý bài đăng</a></li>
+                            <li><a href="user_management">Quản lý thông tin người dùng</a></li>
+                            <li><a href="chart">Biểu đồ thống kê</a></li>
+
+                        </ul>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="user_information_area">
+        <table class="user_information" style="border-spacing:0px ;border:solid 1px rgb(58, 46, 46)">
+            <caption>Danh sách bài đăng</caption>
+            <tr>
+                <th>Họ và tên</th>
+                <th>Ngày đăng</th>
+                <th>Nội dung</th>
+                <th>Hành động</th>
+            </tr>
+            {{#each posts}}
+            <tr>
+                <td>{{this.username}}</td>
+                <td>{{this.date}}</td>
+                <td>{{this.decripstion}}</td>
+                <td class="user_choose_options">
+                    <div class="options_management view-details" style="display:inline-block">
+                        <i class="fa-solid fa-eye"></i>
+                        <span class="option_title ">Xem chi tiết</span>
+                        <div class="post-detail" data-id="{{this._id}}">
+                            <div class="post-detail-child ">
+                                <div class="post_header">
+                                    <img class="user_avatar" src="../{{this.avatar}}">
+                                    <p>{{this.username}}</p>
+                                    <p>{{this.date}}</p>
+                                </div>
+                                <div class="post_content">
+                                    <div class="content_decripstion">
+                                        <p class="post_content_container">Địa điểm :
+                                        <span>{{this.location}}</span>
+                                        </p>
+                                        <p class="post_content_container">Công việc :
+                                        <span>{{this.job}}</span>
+                                        </p>
+                                        <p class="post_content_container">Ngày bắt đầu :
+                                        <span>{{this.startday}}</span>
+                                        </p>
+                                        <p class="post_content_container">Ngày kết thúc :
+                                        <span>{{this.enday}}</span>
+                                        </p>
+                                        <p class="post_content_container">Kinh nghiệm làm việc :
+                                        <span>{{this.experience}}</span>
+                                        </p>
+                                        <p class="post_content_container">Mức lương thấp nhất
+                                            :
+                                        <span>{{this.lowest_salary}}</span>
+                                        </p>
+                                        <p class="post_content_container">Mức lương cao nhất :
+                                        <span>{{this.highest_salary}}</span>
+                                        </p>
+                                        <p class="post_content_container">Mô tả công việc :
+                                        <span>{{this.decripstion}}</span>
+                                        </p>
+                                    </div>
+                                    <div class="images">
+                                        {{#each images}}
+                                        <img src="../../{{this}}" alt="decripstion image">
+                                        {{/each}}
+                                    </div>
+                                </div>
+                                <button type="button" class="remove-post-detail">X</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="options_management delete-post" data-id="{{this._id}}">
+                        <span class="option_title option_title_right" style="color:red">Xóa</span>
+                        <i class="fa-solid fa-trash" style="color:red"></i>
+                    </span>
+                </td>
+            </tr>
+
+            {{/each}}
+        </table>
+    </div>
+
+</main>
+<form action="delete_post" method="post" id="form-delete-post">
+    <input type="hidden" value="" name="id_post" id="deletePostId">
+</form>
+<div class="confirm_delete_post" id="confirm_delete_post">
+    <div class="confirm_delete_box">
+        <p style="border-bottom:solid 1px black">Xóa ?</p>
+        <p>Bạn chắc chắn muốn xóa bài đăng này ?</p>
+        <p style="text-align: right;">
+            <button id="confirm_delete_yes" style="background-color:red ; border-color:red ;padding:5px">Xóa</button>
+            <button id="confirm_delete_no" style="padding:5px">Hủy</button>
+        </p>
+    </div>
+</div>
+<script>
+    const confirm_delete = document.getElementById('confirm_delete_post');
+    const confirm_delete_yes = document.getElementById('confirm_delete_yes');
+    const confirm_delete_no = document.getElementById('confirm_delete_no');
+    const formDelete = document.getElementById('form-delete-post');
+    const id_post = document.getElementById('deletePostId');
+    //Lấy tất cả các phần tử có lớp "view-details"
+    //const viewPosts = document.querySelectorAll('.view-details');
+    const choose_deletes = document.querySelectorAll('.delete-post');
+    choose_deletes.forEach(choose_delete => {
+        choose_delete.addEventListener('click', () => {
+            console.log(confirm_delete);
+            const postId = choose_delete.dataset.id;
+            id_post.value = postId;
+            confirm_delete.style.display = 'flex';
+            confirm_delete_no.addEventListener('click', () => {
+                confirm_delete.style.display = 'none';
+            })
+            confirm_delete_yes.addEventListener('click', () => {
+                formDelete.submit();
+            })
+        });
+    })
+    const content_container = document.querySelectorAll('.post_content_container');
+    // Lấy tất cả các phần tử có lớp "fa-eye" và gán vào biến viewButtons
+    const viewButtons = document.querySelectorAll('.fa-eye');
+    window.addEventListener('DOMContentLoaded', () => {
+        // Ẩn tất cả các phần tử "Xem chi tiết" khi trang được tải lại
+        viewButtons.forEach(Post => {
+            const postDetail = Post.parentNode.querySelector('.post-detail');
+            postDetail.style.display = 'none';
+        });
+    });
+    // Lặp qua từng phần tử trong viewButtons và thêm sự kiện click
+    viewButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            // Lấy phần tử cha (div.post-detail) của nút được nhấp vào
+            const postDetail = button.parentNode.querySelector('.post-detail');
+
+            // Hiển thị hoặc ẩn đi phần tử postDetail bằng cách thay đổi thuộc tính display
+            if (postDetail.style.display === 'none') {
+                postDetail.style.display = 'flex';
+            } else {
+                postDetail.style.display = 'none';
+            }
+        });
+    });
+
+    // Lấy tất cả các phần tử có lớp "remove-post-detail" và gán vào biến removeButtons
+    const removeButtons = document.querySelectorAll('.remove-post-detail');
+
+    // Lặp qua từng phần tử trong removeButtons và thêm sự kiện click
+    removeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            // Lấy phần tử cha (div.post-detail) của nút removeButton được nhấp vào
+            const postDetail = button.parentNode.parentNode;
+
+            // Ẩn đi phần tử postDetail bằng cách đặt thuộc tính display thành 'none'
+            postDetail.style.display = 'none';
+        });
+    });
+    // Lặp qua từng trường thông tin
+    content_container.forEach(container => {
+        //Lấy giá trị của ô input 
+        const content = container.querySelector('span').textContent;
+        // Kiểm tra giá trị của ô input
+        if (content === '') {
+            // Nếu không có giá trị, ẩn ô input
+            container.classList.add('hidden');
+        } else {
+            // Nếu có giá trị, hiển thị ô input
+            container.classList.remove('hidden');
+        }
+    });
+
+
+
+</script>

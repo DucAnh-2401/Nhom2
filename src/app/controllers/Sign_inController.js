@@ -1,6 +1,5 @@
 const User = require('../models/User')
 const Post = require('../models/Post')
-const Savelogin=require('../models/Savelogin')
 const {multipleMongoosetoObject}=require('../../util/mongoose')
 class Sign_inController {
     show(req, res) {

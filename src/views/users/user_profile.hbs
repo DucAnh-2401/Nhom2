@@ -1,7 +1,9 @@
 <div class="user_profile_detail">
     <div class="banner_and_avatar">
-        <div id="user_avatar"></div>
-        <p>Đức Nguyễn</p>
+        <div id="user_avatar">
+            <img src="../../{{avatarpath}}">
+        </div>
+        <p>{{user.username}}</p>
     </div>
     <div class="content_user_profile">
         <div class="basic_user_information">
@@ -11,35 +13,46 @@
                     <li><a href="#">Bạn bè</a></li>
                 </ul>
             </div>
-            <p>Vai trò <span style="font-weight:bolder">Admin</span></p>
-            <p>Sống và làm việc tại <span style="font-weight:bolder">Hà Nội</span></p>
-            <p>Kinh nghiệm làm việc </p>
-            <p>Quê quán </p>
-            <p>Sinh ngày </p>
-            <p>Giới tính </p>
-            <p>Tình trạng mối quan hệ</p>
+            <p>Vai trò <span style="font-weight:bolder">{{user.userposition}}</span></p>
+            <p>Sống và làm việc tại <span style="font-weight:bolder">{{user.address}}</span></p>
+            <p>Kinh nghiệm làm việc <span style="font-weight:bolder">{{user.experience}}</span></p>
+            <p>Quê quán <span style="font-weight:bolder">{{user.birthplace}}</span></p>
+            <p>Sinh ngày <span style="font-weight:bolder">{{user.birthday}}</span></p>
+            <p>Giới tính <span style="font-weight:bolder">{{user.gender}}</span></p>
+            <p>Tình trạng mối quan hệ <span style="font-weight:bolder">{{user.relationshipStatus}}</span></p>
             <button type="button" id="update_profile_button">
                 <i class="fa-solid fa-pen-to-square"></i>
                 Chỉnh sửa thông tin chi tiết
+            </button>
+            <button type="button" id="update_account_button" style="margin-top:3px">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Đổi mật khẩu
             </button>
         </div>
         <div class="user_post_information">
             {{#each posts}}
             <div class="post">
                 <div class="post_header">
-                    <img class="user_avatar" src="{{this.avatar}}">
+                    <img class="user_avatar" src="../../{{this.avatar}}">
                     <p>
                         <span>{{this.username}}</span><br>
-                        <span>{{this.date}}
-
-                        </span>
+                        <span>{{this.date}}</span>
                     </p>
                 </div>
                 <div class="post_content">
-                    <p>{{this.decripstion}}</p>
+                    <div class="content_decripstion">
+                        <div class="content_container">Địa điểm:<span>{{this.location}}</span></div>
+                        <div class="content_container">Công việc : <span>{{this.job}}</span></div>
+                        <div class="content_container">Ngày bắt đầu :<span>{{this.startday}}</span></div>
+                        <div class="content_container">Ngày kết thúc :<span>{{this.enday}}</span></div>
+                        <div class="content_container">Kinh nghiệm làm việc : <span>{{this.experience}}</span></div>
+                        <div class="content_container">Mức lương thấp nhất :<span>{{this.lowest_salary}}</span></div>
+                        <div class="content_container">Mức lương cao nhất : <span>{{this.highest_salary}}</span></div>
+                        <div class="content_container">Mô tả công việc :<span>{{this.decripstion}}</span></div>
+                    </div>
                     <div class="images">
                         {{#each images}}
-                        <img src="{{this}}" alt="decripstion image">
+                        <img src="../../{{this}}" alt="decripstion image">
                         {{/each}}
                     </div>
                 </div>
@@ -62,25 +75,29 @@
         </div>
     </div>
 </div>
-<div class="update_profile_detail">
-    <form action="/updateProfileDetail" method="POST" id="form_update_profile">
+<div class="update_profile_detail" id="update_profile_detail">
+    <form action="/user/update_user_profile" method="POST" id="form_update_profile" enctype="multipart/form-data">
         <div class="header_form_update">
-            <img src="https://leplateau.edu.vn/wp-content/uploads/2023/10/hinh-anh-cute-1.jpg" alt="avatar">
-            <p>Đức Nguyễn</p>
+            <img id="update_profile_user_avatar" src="../../{{avatarpath}}" alt="avatar">
+            <input id="update_profile_user_avatar_input" type="file" name="avatar" accept=".png, .jpg, .jpeg" ><br>
+            <input type="text" value="{{user.username}}" id="update_profile_username" name="username" readonly>
+            <i class="fa-solid fa-pencil" id="change_username" style="border-bottom:solid 1px black"></i>
+            </input>
         </div>
         <div class="content_form_update">
             <ul>
                 <li>Sống và làm việc tại:
-                    <input type="text" name="address">
+                    <input type="text" placeholder="{{address}}" name="address">
                 </li>
+                <li><input type="hidden" value="{{username_sign}}" name="username_sign">
                 <li>Kinh nghiệm làm việc:<br>
-                    <textarea name="experience" id="" cols="30" rows="3"></textarea>
+                    <textarea name="experience" id="" cols="30" rows="3" placeholder="{{experience}}"></textarea>
                 </li>
                 <li>Quê quán:
-                    <input type="text" name="birthplace">
+                    <input type="text" name="birthplace" placeholder="{{birthplace}}">
                 </li>
                 <li>Ngày sinh:
-                    <input type="date" name="birthday">
+                    <input type="date" name="birthday" placeholder="{{birthday}}">
                 </li>
                 <li>Giới tính:
                     <label for="male">Nam</label>
@@ -104,11 +121,118 @@
         </div>
     </form>
 </div>
+<div class="update_account" id="update-account-form">
+
+    <!-- form card change password -->
+    <div class="card card-outline-secondary">
+        <div class="card-header">
+            <h3 class="mb-0">Đổi mật khẩu</h3>
+        </div>
+        <div class="card-body">
+            <form autocomplete="off" class="form" id="form-change-password"role="form" action="/user/account" method="post">
+                <div class="form-group">
+                    <label for="inputPasswordOld">Mật khẩu hiện tại</label>
+                    <input class="form-control" id="inputPasswordOld" required="" type="password" name="oldPassword">
+                </div>
+                <div class="form-group">
+                    <label for="inputPasswordNew">Mật khẩu mới </label>
+                    <input class="form-control" id="inputPasswordNew" required="" type="password" name="newPassword">
+                    <small class="form-text text-muted" id="passwordHelpBlock">Mật khẩu của bạn phải dài 8-20 ký tự,
+                        chứa các chữ cái và số và không được chứa dấu cách, ký tự đặc biệt hoặc biểu tượng cảm
+                        xúc.</small>
+                </div>
+                <div class="form-group">
+                    <label for="inputPasswordNewVerify">Xác nhận mật khẩu</label>
+                    <input class="form-control" id="inputPasswordNewVerify" required="" type="password" name="verifyPassword">
+                    <span class="form-text small text-muted">Để xác nhận, hãy nhập lại mật khẩu mới.</span>
+                </div>
+                <div class="form-group footer_form">
+                    <button class="btn btn-success btn-lg float-right" type="submit" id="submit-form-change-password">Lưu</button>
+                    <button class="btn btn-success btn-lg float-left" id="cacel-change-password" type="button" style="background-color:rgb(203, 11, 49); border-color:rgb(203, 11, 49)">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div><!-- /form card change password -->
+</div>
+
 <script>
 
     const user_login = document.getElementById('user_login');
     const user_register_new = document.getElementById('user_register_new');
     user_login.style.display = 'none';
     user_register_new.style.display = 'none';
+    const update_profile_button = document.getElementById("update_profile_button");
+    const update_profile_detail = document.getElementById("update_profile_detail");
+    const exit_update_profile = document.getElementById("exit_update_profile");
+    update_profile_button.addEventListener('click', function () {
+        update_profile_detail.style.display = "flex";
+    })
+    exit_update_profile.addEventListener("click", function () {
+        update_profile_detail.style.display = "none";
+    })
+    const update_profile_username = document.getElementById('update_profile_username');
+    const change_username = document.getElementById('change_username');
+    change_username.addEventListener('click', function () {
+        update_profile_username.readOnly = false;
+        update_profile_username.focus();
+    })
+    update_profile_username.addEventListener("input", function () {
+        this.size = this.value.length;
+    });
+    //Chọn ảnh 
+    const update_profile_user_avatar = document.getElementById("update_profile_user_avatar");
+    const update_profile_user_avatar_input = document.getElementById("update_profile_user_avatar_input");
+    update_profile_user_avatar_input.addEventListener("change", function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                update_profile_user_avatar.src = e.target.result;
+            };
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+    //Ẩn những trường không có giá trị trên bài đăng
+    // Lấy danh sách tất cả trường
+    const content_container = document.querySelectorAll('.content_container');
+
+    // Lặp qua từng trường thông tin
+    content_container.forEach(container => {
+        //Lấy giá trị của ô input 
+        const content = container.querySelector('span').textContent;
+        // Kiểm tra giá trị của ô input
+        if (content === '') {
+            // Nếu không có giá trị, ẩn ô input
+            container.classList.add('hidden');
+        } else {
+            // Nếu có giá trị, hiển thị ô input
+            container.classList.remove('hidden');
+        }
+    });
+    //Thay đổi thông tin tài khoản
+    const update_account = document.getElementById('update_account_button');
+    const update_account_form= document.getElementById('update-account-form');
+    const cacel_change_password=document.getElementById('cacel-change-password');
+    const form_change_password=document.getElementById('form-change-password');
+    const inputPasswordNew=document.getElementById('inputPasswordNew').value;
+    const inputPasswordNewVerify=document.getElementById('inputPasswordNewVerify');
+    //const submit_form=document.getElementById('submit-form-change-password');
+    //Hiện form thay đổi mật khẩu
+    update_account.addEventListener('click',function(){
+        update_account_form.style.display="flex";
+        })
+    //Ẩn form thay đổi mật khẩu 
+    cacel_change_password.addEventListener('click',function(){
+        update_account_form.style.display='none';
+    })
+    //Kiểm tra mật khẩu mới và mật khẩu xác nhận đã trùng khớp chưa 
+    form_change_password.addEventListener('submit', function(event){
+         event.preventDefault();
+         if(inputPasswordNew!==inputPasswordNewVerify){
+            alert('Mật khẩu xác nhận không khớp với mật khẩu mới!');
+            return;
+         }
+         form_change_password.submit();
+    })
 </script>

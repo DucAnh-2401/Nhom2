@@ -1,39 +1,57 @@
 
 const User = require('../models/User')
 const Post = require('../models/Post')
-const {multipleMongoosetoObject}=require('../../util/mongoose')
-const {MongoosetoObject}=require('../../util/mongoose')
+const { multipleMongoosetoObject } = require('../../util/mongoose')
+const { MongoosetoObject } = require('../../util/mongoose')
 class SiteControllers {
-    async home(req,res,next){
-        const username = req.session.username;
-        const userposition = req.session.userposition;
-        Post.find().then(posts=>{
-            
-            res.render('home',{username,userposition,posts:multipleMongoosetoObject(posts)})
-        })
-        .catch(next)
+    async home(req, res, next) {
+        let username = req.session.username;
+        let userposition = req.session.userposition;
+        let username_sign = req.session.username_sign;
+        let avatarpath = "uploads/logo.png";
+        console.log(username);
+        if (username == null || userposition == null) {
+            username = "Profile";
+            userposition = "Position";
+        }
+        console.log(username_sign);
+        try {
+            const avatar = await User.findOne(
+                { username_sign: username_sign },
+            )
+            avatarpath = avatar.avatar;
+            console.log(avatarpath);
+        } catch (err) {
+            console.log(err)
+        } finally {
+            Post.find().then(posts => {
+                posts = posts.reverse();
+                res.render('home', { username, userposition, avatarpath, posts: multipleMongoosetoObject(posts) })
+            })
+                .catch(next)
+        }
     }
-    
+
     async option_management(req, res, next) {
         const username = req.session.username;
         const userposition = req.session.userposition;
-        User.find().then(users=>{
-            res.render('user_management',{username,userposition,users:multipleMongoosetoObject(users)})
-        }).catch(next)  
+        User.find().then(users => {
+            res.render('management/user_management', { username, userposition, users: multipleMongoosetoObject(users) })
+        }).catch(next)
     }
-    async delete (req,res){
-        const userId=req.body.itemId
-        User.findOneAndDelete({_id:userId})
-        .then(user=>{
-            res.redirect('/user_management') 
-        }).catch(err=>{
-            console.log(err)
-        });
+    async delete(req, res) {
+        const userId = req.body.itemId
+        User.findOneAndDelete({ _id: userId })
+            .then(user => {
+                res.redirect('/user_management')
+            }).catch(err => {
+                console.log(err)
+            });
     }
-    async insert_user(req,res,next){
+    async insert_user(req, res, next) {
         res.render('users/insert_user')
     }
-    async insert_new_user(req,res,next){
+    async insert_new_user(req, res, next) {
         //Lấy các giá trị trong form người dùng gửi lên ( sử dụng body-parser)
         const userPosition = req.body.userposition;
         const userName = req.body.username;
@@ -47,8 +65,8 @@ class SiteControllers {
             const user = await User.find({
                 username_sign: userNameSign
             })
-            
-            if (user.length===0) {
+
+            if (user.length === 0) {
                 const newUser = new User({
                     userposition: userPosition,
                     useremail: userEmail,
@@ -66,24 +84,52 @@ class SiteControllers {
 
         }
     }
-    logout(req,res){
-        req.session.username='Profile';
-        req.session.userposition='Position';
+    logout(req, res) {
+        req.session.username = 'Profile';
+        req.session.userposition = 'Position';
+        req.session.username_sign = "$$$";
         res.redirect('/')
+
     }
-    async show(req,res,next){
-        const username =req.session.username;
-        const username_sign=req.session.username_sign;
-        console.log(username_sign)
-        console.log(username)
-        Post.find({username:username})
-        .then(posts=>{
-            console.log(posts)
-            res.render('users/user_profile',{username, username_sign,posts:multipleMongoosetoObject(posts)})
-        }).catch(next)
+    async searching(req, res, next) {
+        const job = req.query.job;
+        const location = req.query.location;
+        const smallest = req.query.smallest_salary;
+        const highest = req.query.highest_salary;
+        console.log(job, location, smallest, highest);
+        const posts = await Post.find({
+            job: job,
+            location: location
+        })
+        let username_sign;
+        let username;
+        let userposition;
+        let avatarpath;
+        try {
+            username_sign = req.session.username_sign;
+            const user = await User.findOne({
+                username_sign: username_sign
+            })
+            username = user.username;
+            userposition = user.userposition;
+            avatarpath=user.avatar;
+            console.log(avatarpath);
+            if(avatarpath==undefined){
+                avatarpath="logo.png";
+            }
+        }catch(err){
+            username='Profile';
+            userposition='Position';
+            avatarpath='logo.png';
+        }
         
-       
-        
+        console.log(posts)
+        console.log(posts.length)
+        if (posts == 0) {
+            res.redirect('/')
+        } else {
+            res.render('home', { username, userposition,avatarpath, posts: multipleMongoosetoObject(posts) })
+        }
     }
 
 }

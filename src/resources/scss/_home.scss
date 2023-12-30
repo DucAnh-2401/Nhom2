@@ -1,3 +1,6 @@
+.hidden {
+	display: none;
+  }
 main{
 	display:grid;
 	grid-template-columns: 1fr 2fr 1fr;
@@ -14,9 +17,10 @@ main .aside_left, main .aside_right , main content{
 }
 main .user_avatar{
 	width:var(--height-images);
-	height:auto;
+	height:var(--height-images);
 	border-radius: 50%;
-
+	object-fit: cover;
+	object-position: center;
 }
 main .aside_left .header_aside_left{
 	position: relative;
@@ -118,9 +122,6 @@ content form button {
 content form button:active{
 	background-color: rgb(79, 220, 79);
 }
-content .post{
-	border-bottom: solid 1px #d1cbcb;
-}
 .post .post_header{
 	margin-bottom: 10px;
 	margin-top:20px;
@@ -142,6 +143,13 @@ content .post{
 .post .post_content{
 	margin-bottom: 20px;
 }
+.post_content .content_decripstion{
+	display:grid;
+}
+.content_decripstion p{
+	
+	margin:0;
+}
 .post .post_content .images{
 	display:grid;
 	grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
@@ -158,6 +166,7 @@ content .post{
 	cursor:pointer;
 	padding:5px 0px;
 	border-top: solid 1px #d1cbcb;
+	border-bottom: solid 1px #d1cbcb;
 }
 .post .post_footer div{
 	padding:4px;
@@ -190,15 +199,15 @@ content .post{
 .aside_right .quick_searching p:nth-child(2){
 	text-align: center;
 }
-.quick_searching p:nth-child(2) span{
-	border-bottom: solid 2px var(--color-brand);
-	background-color: rgb(240, 227, 210);
+.quick_searching p:nth-child(2)>button{
+	background-color: var(--color-brand);
 	padding:5px 20px;
 	border-radius: 10px;
 	cursor:pointer;
+	color:white;
 }
-.quick_searching p:nth-child(2) span:active{
-	padding:4px 19px;
+.quick_searching p:nth-child(2)>button:hover{
+	transform:scale(0.9);
 }
 .aside_right button{
 	padding: 3px 10px;
@@ -223,7 +232,7 @@ content .post{
 	display:flex;
 	justify-content:center;
 	display:none;
-	transition:all 1s ;
+	transition:all 3s ease-in;
 }
 #post_action_if_have_account #form_post_official{
 	padding:20px;

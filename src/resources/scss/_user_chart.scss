@@ -1,0 +1,18 @@
+.chart_area{
+    display:flex;
+    width:100%;
+    height:auto;
+    flex-wrap: wrap;
+    justify-content: space-around;   
+    padding-top: 30px; 
+}
+.chart_area .gender_chart{
+    width:600px;
+    min-width: 200px;
+    margin:0px 20px;
+}
+.chart_area .location_chart{
+    width:300px;
+    min-width: 200px;
+    margin:0px 20px;
+}
