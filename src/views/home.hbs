@@ -23,7 +23,8 @@
                             <li><a href="user_management">Quản lý thông tin người dùng</a></li>
                             <li><a href="user/chart">Biểu đồ thống kê</a></li>
                         </ul>
-                    </a></li>
+                    </a>
+                </li>
             </ul>
         </div>
     </aside>
@@ -66,8 +67,84 @@
                     <span>Thích</span>
                 </div>
                 <div class="comment">
-                    <i class="fa-solid fa-comment"></i>
-                    <span>Bình luận</span>
+                    <div class="comment-action" data-id="{{this._id}}">
+                        <i class="fa-solid fa-comment"></i>
+                        <span>Bình luận</span>
+                    </div>
+                    <div class="action-comment-post" id="action-comment-post">
+                        <div class="content-post" id="content-post">
+                            <div class="post-header">
+                                <img class="user_avatar" src="../{{this.avatar}}">
+                                <p>
+                                    <span>{{this.username}}</span><br>
+                                    <span>{{this.date}}</span>
+                                </p>
+                            </div>
+                            <div class="post-content">
+                                <div class="content_decripstion">
+                                    <p class="content_container">Địa điểm :<span>{{this.location}}</span></p>
+                                    <p class="content_container">Công việc : <span>{{this.job}}</span></p>
+                                    <p class="content_container">Ngày bắt đầu :<span>{{this.startday}}</span></p>
+                                    <p class="content_container">Ngày kết thúc :<span>{{this.enday}}</span></p>
+                                    <p class="content_container">Kinh nghiệm làm việc : <span>{{this.experience}}</span>
+                                    </p>
+                                    <p class="content_container">Mức lương thấp nhất
+                                        :<span>{{this.lowest_salary}}</span>
+                                    </p>
+                                    <p class="content_container">Mức lương cao nhất :
+                                        <span>{{this.highest_salary}}</span>
+                                    </p>
+                                    <p class="content_container">Mô tả công việc :<span>{{this.decripstion}}</span></p>
+                                </div>
+                                <div class="images">
+                                    {{#each images}}
+                                    <img src="./{{this}}" alt="decripstion image">
+                                    {{/each}}
+                                </div>
+                            </div>
+                            <div class="post-footer">
+                                <div class="like">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span>Thích</span>
+                                </div>
+                                <div class="comment">
+                                    <i class="fa-solid fa-comment"></i>
+                                    <span>Bình luận</span>
+                                </div>
+                                <div class="share">
+                                    <i class="fa-solid fa-share"></i>
+                                    <span>Chia sẻ</span>
+                                </div>
+                            </div>
+                            <p class="comment-count">{{this.listComments.length}} bình luận</p>
+                            {{#if listComments.length}}
+                            {{#each listComments}}
+                            <div class="list-comment">
+                                <img src="../{{this.avatar}}">
+                                <div class="text-area">
+                                    <p class="name">{{this.username}}</p>
+                                    <p class="time">{{this.comment}}</p>
+                                </div>
+                            </div>
+                            {{/each}}
+                            {{else}}
+                            <p style="color: rgb(37, 34, 34);">Hãy là người bình luận đầu tiên ...</p>
+                            {{/if}}
+                            <form class="form-action-comment" method="post" action="comment/post/{{this._id}}">
+                                {{#with ../avatarpath}}
+                                <img class="user-avatar" src="../{{this}}">
+                                {{/with}}
+                                <textarea name="contentComment" class="content-comment"
+                                    placeholder="Bạn đang nghĩ gì ?..." required></textarea>
+                                <i class="fa-regular fa-paper-plane" id="submit-comment-button"></i>
+                                <input class="id-post" id="id-post" type="hidden" value="" name="idPost">
+                                {{#with ../avatarpath}}
+                                <input name="avatar" value="{{this}}" type="hidden">
+                                {{/with}}
+                            </form>
+                            <i class="fa-regular fa-circle-xmark" id="exit-comment-action"></i>
+                        </div>
+                    </div>
                 </div>
                 <div class="share">
                     <i class="fa-solid fa-share"></i>
@@ -246,3 +323,4 @@
         }
     });
 </script>
+<script src="../js/comment.js"></script>

@@ -2,12 +2,18 @@
 	display: none;
   }
 main{
-	display:grid;
-	grid-template-columns: 1fr 2fr 1fr;
+	display:flex;
 	padding:20px 60px 10px;
-	gap:5px;
+	justify-content: center;
 	max-height:600px;
 }
+
+/* Sử dụng media queries để điều chỉnh giao diện cho kích thước màn hình nhỏ */
+@media (max-width: 600px) {
+	.aside_left ,.aside_right {
+	  display: none;
+	}
+  }
 main .aside_left, main .aside_right , main content{
 	background:#fff;
 	border: solid 1px wheat;
@@ -22,10 +28,7 @@ main .user_avatar{
 	object-fit: cover;
 	object-position: center;
 }
-main .aside_left .header_aside_left{
-	position: relative;
-	z-index: 1;
-}
+
 main .aside_left .header_aside_left i{
 	color: blue;
 	position: absolute;
@@ -86,8 +89,9 @@ main .aside_left .content_aside_left li:hover{
 content{
 	overflow:scroll;
 	max-height: 550px;
+	min-width: 500px;
 }
-content form{
+content>form{
 	display:flex;
 	justify-content: space-around;
 	align-items: center;
@@ -164,16 +168,126 @@ content form button:active{
 	grid-template-columns: 1fr 1fr 1fr;
 	text-align: center;
 	cursor:pointer;
-	padding:5px 0px;
-	border-top: solid 1px #d1cbcb;
-	border-bottom: solid 1px #d1cbcb;
+	border-top: solid 1px #b2aaaa;
+	border-bottom: solid 1px #b2aaaa;
 }
-.post .post_footer div{
-	padding:4px;
+// Start Css cho phần bình luận
+.post_footer .action-comment-post{
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color: rgba(255, 255, 255, 0.442);
+	display: flex;
+	justify-content: center;
+	z-index:4;
+	display:none;
 }
-.post .post_footer div:hover{
-	background-color: #d1cbcb;
+.action-comment-post .content-post{
+	width:600px;
+	background-color: white;
+	height:500px;
+	overflow: scroll;
+	padding:20px;
+	position:relative;
+	max-width: 600px;
+}
+.content-post .post-header{
+	display:flex;
+	justify-content: left;
+	margin-bottom: 20px;
+}
+.content-post .post-content{
+	text-align: left;
+}
+.content-post .post-content>.images{
+	display:grid;
+	grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+	column-gap: 2px;
+}
+.content-post .post-footer{
+	margin-top: 10px;
+	display:grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+.content-post .comment-count{
+	text-align: right;
+	margin-right: 20px;
 	color:#462e2e;
+}
+.content-post .comment-count:hover{
+	text-decoration: underline;
+}
+.content-post .list-comment{
+	display:flex;
+	justify-content: left;
+	padding-left:10px;
+	margin:10px 0px;
+}
+.list-comment>img{
+	width:30px;
+	height:30px;
+	border-radius: 50%;
+	object-fit: cover;
+	object-position: center;
+}
+.list-comment .text-area{
+	margin:0px 10px;
+	background-color: #e1dbdb;
+	border-radius: 5px;
+	width:max-content;
+	height:max-content;
+	padding:5px 10px;
+}
+.list-comment .text-area>p{
+	font-size: 1rem;
+	margin:0px;
+	text-align: left;
+}
+.list-comment .text-area>p:first-child:hover{
+	text-decoration: underline;
+}
+.content-post .fa-circle-xmark{
+	padding:5px;
+	position:absolute;
+	top:0;
+	right:0;
+}
+.content-post .form-action-comment{
+	position:sticky;
+	bottom: -20px;;
+	background-color: #fff;
+	width:100%;
+	margin:0px;
+	padding:5px;
+	display:flex;
+	justify-content: left;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.form-action-comment .user-avatar{
+	width:50px;
+	height:50px;
+	border-radius: 50%;
+	object-fit: cover;
+	object-position: center;
+}
+.form-action-comment .content-comment{
+	padding:5px;
+	width:70%;
+	margin:0px 10px;
+	outline:none;
+}
+.form-action-comment .fa-paper-plane{
+	padding:10px 20px;
+	color:white;
+	background-color: var(--color-brand);
+	border-radius: 10%;
+}
+// End Css cho phần bình luận
+.post .post_footer>div{
+	padding:4px;
 }
 .post .post_footer span{
 	padding-left: 5px;
