@@ -3,7 +3,9 @@ const Post = require('../models/Post')
 const {multipleMongoosetoObject}=require('../../util/mongoose')
 class Sign_inController {
     show(req, res) {
-        res.render('sign_in')
+        const username='Profile';
+        const avatarpath='uploads/logo.png';
+        res.render('sign_in',{username:username,avatarpath:avatarpath})
     }
     sign_in(req, res) {
         const userEmail = req.body.useremail;
@@ -19,7 +21,6 @@ class Sign_inController {
                 if (user === null) {
                     res.render('sign_failed')
                 } else {
-                    console.log(user)
                     const username= user.username
                     const userposition=user.userposition
                     const username_sign=user.username_sign
@@ -35,7 +36,10 @@ class Sign_inController {
         
     }
     logout(req,res){
-        
+        delete req.session.username;
+        delete req.session.username_sign;
+        delete req.session.userposition;
+        res.redirect("/sign_in") ;
        }
 }
 

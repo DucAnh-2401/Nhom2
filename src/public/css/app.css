@@ -156,9 +156,29 @@ header .first_menu:focus .second_menu_box {
 .second_menu_box .third_menu_box {
   padding: 0px; }
 
+@media (max-width: 1100px) {
+  header .price {
+    display: none; } }
+
+@media (max-width: 980px) {
+  header .customer-severvice {
+    display: none; } }
+
+@media (max-width: 900px) {
+  header .notifications {
+    display: none; } }
+
+@media (max-width: 800px) {
+  header .searching-area {
+    display: none; } }
+
+@media (max-width: 450px) {
+  header .brand-logo {
+    display: none; } }
+
 footer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   background-color: bisque; }
 
 footer div {
@@ -237,8 +257,8 @@ main {
   max-height: 600px; }
 
 /* Sử dụng media queries để điều chỉnh giao diện cho kích thước màn hình nhỏ */
-@media (max-width: 600px) {
-  .aside_left, .aside_right {
+@media (max-width: 1200px) {
+  aside {
     display: none; } }
 
 main .aside_left, main .aside_right, main content {
@@ -304,34 +324,37 @@ main .aside_left .content_aside_left li:hover {
   display: block;
   width: max-content; }
 
-.header_aside_left div:last-child {
-  max-width: 100px; }
-
 .header_aside_left #user_name {
-  font-size: 2rem;
+  font-size: 1.4rem;
   padding-left: 30px; }
 
 content {
   overflow: scroll;
   max-height: 550px;
-  min-width: 500px; }
+  min-width: 500px;
+  padding-bottom: 0px;
+  max-width: 600px; }
 
 content > form {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   border-bottom: solid 1px #d1cbcb;
   padding-bottom: 20px; }
 
-content form input {
+content .form-posting .content-posting {
+  max-width: 400px;
   width: 350px;
-  min-width: 350px;
-  height: var(--height-images);
-  min-height: var(--height-images);
-  font-size: 18px;
-  padding: 10px;
-  outline: #fff;
-  margin: 0px 10px; }
+  min-width: 100px;
+  padding: 10px 0px 10px 10px;
+  outline: none; }
+
+content > form > .user-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center; }
 
 content form button {
   padding: 5px 15px;
@@ -351,6 +374,11 @@ content form button {
 content form button:active {
   background-color: #4fdc4f; }
 
+.post .comment-count-list {
+  text-align: right;
+  margin: 0px 20px;
+  color: black; }
+
 .post .post_header {
   margin-bottom: 10px;
   margin-top: 20px;
@@ -367,10 +395,9 @@ content form button:active {
 .post .post_header .user_avatar {
   width: 70px;
   height: 70px;
-  border-radius: 50%; }
-
-.post .post_content {
-  margin-bottom: 20px; }
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center; }
 
 .post_content .content_decripstion {
   display: grid; }
@@ -672,6 +699,14 @@ content form button:active {
 .footer_post_action button:active {
   transform: scale(0.9); }
 
+@media (max-width: 1350px) {
+  content .form-posting .content-posting {
+    width: 350px; } }
+
+@media (max-width: 1320px) {
+  .aside_right .searching-option {
+    display: none; } }
+
 #user_register {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -786,13 +821,12 @@ div:first-child p:last-child button {
   color: #1877F2;
   font-size: 20px; }
 
-#register_form div:first-child .user_position,
-#register_form div:first-child .user-name-box,
-#register_form div:first-child .user-confirm-box {
-  display: none; }
+#user_register {
+  display: flex;
+  justify-content: center; }
 
-#register_form .other_login_box {
-  display: none; }
+#register_form {
+  border-radius: 20px; }
 
 #register_form .rememberme_checkbox {
   margin: 0px;
@@ -804,6 +838,13 @@ div:first-child p:last-child button {
 #register_form .rememberme_checkbox a {
   display: inline-block;
   padding: 1px 0px; }
+
+@media (max-width: 1200px) {
+  #user_register .banner {
+    display: none; }
+  #user_register #register_form {
+    padding-bottom: 20px;
+    border-radius: 20px; } }
 
 .user_management {
   display: grid;
@@ -1126,9 +1167,8 @@ div:first-child p:last-child button {
   font-size: larger; }
 
 .user_profile_detail .content_user_profile {
-  display: grid;
-  gap: 30px;
-  grid-template-columns: 2fr 4fr;
+  display: flex;
+  justify-content: center;
   padding-top: 10px; }
 
 .content_user_profile .basic_user_information {
@@ -1188,7 +1228,8 @@ div:first-child p:last-child button {
 
 .content_user_profile .user_post_information {
   max-height: 100vh;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  max-width: 700px; }
 
 .user_post_information .post_header .user_avatar {
   object-fit: cover;
@@ -1294,6 +1335,10 @@ div:first-child p:last-child button {
 
 .footer_form .btn-success {
   padding: 5px 15px; }
+
+@media (max-width: 1100px) {
+  .content_user_profile .basic_user_information {
+    display: none; } }
 
 .chart_area {
   display: flex;

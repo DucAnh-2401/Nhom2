@@ -1,7 +1,9 @@
 const User = require('../models/User')
 class RegisterControllers {
     show(req, res) {
-        res.render('register');
+        const username='Profile';
+        const avatarpath='uploads/logo.png';
+        res.render('register',{username:username,avatarpath:avatarpath});
     }
     register(req, res) {
         //Lấy các giá trị trong form người dùng gửi lên ( sử dụng body-parser)

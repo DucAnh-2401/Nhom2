@@ -9,11 +9,11 @@ main{
 }
 
 /* Sử dụng media queries để điều chỉnh giao diện cho kích thước màn hình nhỏ */
-@media (max-width: 600px) {
-	.aside_left ,.aside_right {
-	  display: none;
+@media (max-width:1200px) {
+	aside{
+		display:none;
 	}
-  }
+}
 main .aside_left, main .aside_right , main content{
 	background:#fff;
 	border: solid 1px wheat;
@@ -79,34 +79,37 @@ main .aside_left .content_aside_left li:hover{
 	display:block;
 	width:max-content;
 }
-.header_aside_left div:last-child{
-	max-width: 100px;
-}
 .header_aside_left #user_name{
-	font-size: 2rem;
+	font-size: 1.4rem;
 	padding-left: 30px;
 }
 content{
 	overflow:scroll;
 	max-height: 550px;
 	min-width: 500px;
+	padding-bottom: 0px;
+	max-width: 600px;
 }
 content>form{
 	display:flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	border-bottom: solid 1px #d1cbcb;
 	padding-bottom: 20px;
 }
-content form input{
-	width: 350px;
-	min-width: 350px;
-	height: var(--height-images);
-	min-height: var(--height-images);
-	font-size: 18px;
-	padding: 10px;
-	outline: #fff;
-	margin:0px 10px;
+content .form-posting .content-posting{
+	max-width: 400px;
+	width:350px;
+	min-width: 100px;
+	padding:10px 0px 10px 10px;
+	outline:none;
+}
+content>form>.user-avatar{
+	width:70px;
+	height:70px;
+	border-radius: 50%;
+	object-fit: cover;
+	object-position: center;
 }
 content form button {
 	padding: 5px 15px;
@@ -126,6 +129,12 @@ content form button {
 content form button:active{
 	background-color: rgb(79, 220, 79);
 }
+.post .comment-count-list{
+	text-align: right;
+	margin:0px 20px;
+	color:black;
+
+}
 .post .post_header{
 	margin-bottom: 10px;
 	margin-top:20px;
@@ -143,15 +152,13 @@ content form button:active{
 	width:70px; 
 	height:70px;
 	border-radius: 50%;
-}
-.post .post_content{
-	margin-bottom: 20px;
+	object-fit: cover;
+	object-position: center;
 }
 .post_content .content_decripstion{
 	display:grid;
 }
 .content_decripstion p{
-	
 	margin:0;
 }
 .post .post_content .images{
@@ -451,4 +458,14 @@ content form button:active{
 }
 .footer_post_action button:active{
 	transform: scale(.9);
+}
+@media (max-width:1350px) {
+	content .form-posting .content-posting{
+		width:350px;
+	}
+}
+@media (max-width:1320px) {
+	.aside_right .searching-option{
+		display:none;
+	}
 }

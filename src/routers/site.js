@@ -6,6 +6,5 @@ router.get('/user_management',siteControllers.option_management)
 router.post('/delete',siteControllers.delete)
 router.get('/insert_user',siteControllers.insert_user)
 router.post('/insert_user',siteControllers.insert_new_user)
-router.get('/logout',siteControllers.logout)
 router.get('/',siteControllers.home)
 module.exports=router

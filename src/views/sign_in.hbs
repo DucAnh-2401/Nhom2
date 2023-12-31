@@ -1,21 +1,10 @@
 <form id="user_register" method="POST">
-    <div>
+    <div class="banner">
         <img src="./img/hop-tac-kinh-doanh.jpg" alt="Brands" title="Viec lam 24h">
     </div>
     <div id="register_form">
-        <div>
+        <div class="form-login">
             <h1>Chào mừng trở lại !</h1>
-            <p class="user_position">
-                <input type="radio" name="userposition" id="userposition1">
-                <label for="userposition1">Ứng viên</label>
-                <input type="radio" name="userposition" id="userposition2">
-                <label for="userposition2">Nhà tuyển dụng</label>
-            </p>
-            <div class="user-box user-name-box">
-                <i class="fa-solid fa-user"></i>
-                <input type="text"name="username" id="username" placeholder="Họ và tên">
-                
-            </div>
             <div class="user-box user-email-box" style="margin-top:20px">
                 <i class="fa-solid fa-envelope"></i>
                 <input type="email"name="useremail"id="useremail"placeholder="Email" required>    
@@ -25,37 +14,13 @@
                 <input type="password" name="userpassword" id="userpassword" placeholder="Mật khẩu"required>
                 
             </div>
-            <div class="user-box user-last-box  user-confirm-box">
-                <i class="fa-solid fa-key"></i>
-                <input type="password" name="confirm_userpassword" id="confirm_password" placeholder="Xác nhận mật khẩu">
-                
-            </div>
             <div class="rememberme_checkbox" >
                 <input type="checkbox">
                 <span>Ghi nhớ cho lần đăng nhập sau</span><br>
                 <a href="#">Quên mật khẩu ?</a>
             </div>
             <p><button type="submit">Đăng nhập !</button></p>
-        </div>
-        <div class="other_login other_login_box">
-            <span>Or</span>
-            <p>
-                <a href="#">
-                    <i class="fa-brands fa-facebook"></i>
-                    Đăng ký bằng Facebook
-                </a>
-            </p>
-            <p>
-                <a href="#">
-                    <i class="fa-solid fa-phone"></i>
-                    Đăng ký bằng số điện thoại
-                </a>
-            </p>
-            <p>
-                Đã có tài khoản ?
-                <a href="#">Đăng nhập ngay !</a>
-            </p>
-        </div>   
+        </div>  
     </div>
 </form>
 <script src="js/sign_in.js"></script>

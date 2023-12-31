@@ -5,9 +5,8 @@
                 <img class="user_avatar" src="../{{avatarpath}}" alt="avatar" title="avatar"><br>
                 <span id="user_position">{{userposition}}</span>
             </div>
-            <div>
-                <span id="user_name">{{username}}</span>
-            </div>
+            <span id="user_name">{{username}}</span>
+
         </div>
         <div class="content_aside_left">
             <ul>
@@ -29,10 +28,9 @@
         </div>
     </aside>
     <content>
-        <form method="POST" action="/posting">
-            <img class="user_avatar" src="../{{avatarpath}}" alt="avatar" title="avatar">
-            <input type="text" id="post_form" placeholder="Bạn muốn đăng gì ?...">
-            </input>
+        <form method="POST" action="/posting" class="form-posting">
+            <img class="user-avatar" src="../{{avatarpath}}" alt="avatar" title="avatar">
+            <textarea type="text" id="post_form" class="content-posting"placeholder="Bạn muốn đăng gì ?..."></textarea>
             <button type="button">Đăng bài</button>
         </form>
         {{#each posts}}
@@ -61,6 +59,9 @@
                     {{/each}}
                 </div>
             </div>
+            <p class="comment-count-list">
+                {{this.listComments.length}} bình luận
+            </p>
             <div class="post_footer">
                 <div class="like">
                     <i class="fa-solid fa-heart"></i>
@@ -151,6 +152,7 @@
                     <span>Chia sẻ</span>
                 </div>
             </div>
+
         </div>
         {{/each}}
     </content>
@@ -158,7 +160,7 @@
         <div class="quick_searching">
             <form action="/searching" method="get">
                 <p><i class="fa-solid fa-magnifying-glass"></i>Tìm nhiều hơn</p>
-                <p>
+                <p class="searching-option">
                     <button type="button">Ứng viên</button>
                     <button type="button">Việc làm</button>
                 </p>

@@ -11,9 +11,14 @@ commentButtons.forEach(commentButton => {
             post.style.display = 'flex';
             const submitButton=commentButton.parentNode.parentNode.querySelector('.fa-paper-plane');
             const idPost=commentButton.parentNode.parentNode.querySelector('.id-post');
+            const contentComment=commentButton.parentNode.parentNode.querySelector('.content-comment').value;
             const form = commentButton.parentNode.querySelector('.form-action-comment');
-            submitButton.addEventListener('click',()=>{
+            submitButton.addEventListener('click',function(event){
+                event.preventDefault(); // Ngăn chặn gửi biểu mẫu mặc định
                 idPost.value=commentButton.dataset.id;
+                if(contentComment===''){
+                    return;
+                }
                 form.submit();
             })
 

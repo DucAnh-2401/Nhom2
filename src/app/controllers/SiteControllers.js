@@ -12,20 +12,22 @@ class SiteControllers {
         if (username == null || userposition == null) {
             username = "Profile";
             userposition = "Position";
-        }
-        try {
+            Post.find().then(posts => {
+                posts = posts.reverse();
+                res.render('home', { username, userposition, avatarpath: avatarpath, posts: multipleMongoosetoObject(posts) })
+            }).catch(next)
+        } else {
             const avatar = await User.findOne(
                 { username_sign: username_sign },
             )
             avatarpath = avatar.avatar;
-        } catch (err) {
-            console.log(err)
-        } finally {
             Post.find().then(posts => {
                 posts = posts.reverse();
-                res.render('home', { username, userposition, avatarpath:avatarpath, posts: multipleMongoosetoObject(posts) })
+                res.render('home', { username, userposition, avatarpath: avatarpath, posts: multipleMongoosetoObject(posts) })
             }).catch(next)
         }
+
+
     }
 
     async option_management(req, res, next) {
@@ -80,13 +82,6 @@ class SiteControllers {
 
         }
     }
-    logout(req, res) {
-        req.session.username = 'Profile';
-        req.session.userposition = 'Position';
-        req.session.username_sign = "$$$";
-        res.redirect('/')
-
-    }
     async searching(req, res, next) {
         const job = req.query.job;
         const location = req.query.location;
@@ -108,23 +103,23 @@ class SiteControllers {
             })
             username = user.username;
             userposition = user.userposition;
-            avatarpath=user.avatar;
+            avatarpath = user.avatar;
             console.log(avatarpath);
-            if(avatarpath==undefined){
-                avatarpath="logo.png";
+            if (avatarpath == undefined) {
+                avatarpath = "logo.png";
             }
-        }catch(err){
-            username='Profile';
-            userposition='Position';
-            avatarpath='logo.png';
+        } catch (err) {
+            username = 'Profile';
+            userposition = 'Position';
+            avatarpath = 'logo.png';
         }
-        
+
         console.log(posts)
         console.log(posts.length)
         if (posts == 0) {
             res.redirect('/')
         } else {
-            res.render('home', { username, userposition,avatarpath, posts: multipleMongoosetoObject(posts) })
+            res.render('home', { username, userposition, avatarpath, posts: multipleMongoosetoObject(posts) })
         }
     }
 

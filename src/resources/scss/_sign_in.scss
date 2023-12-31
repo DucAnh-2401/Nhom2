@@ -1,10 +1,9 @@
-#register_form div:first-child .user_position,
-#register_form div:first-child .user-name-box,
-#register_form div:first-child .user-confirm-box{
-    display:none;
+#user_register{
+    display:flex;
+    justify-content: center;
 }
-#register_form .other_login_box{
-    display:none;
+#register_form{
+    border-radius: 20px;
 }
 #register_form .rememberme_checkbox{
     margin:0px;
@@ -16,4 +15,13 @@
 #register_form .rememberme_checkbox a{
     display:inline-block;
     padding:1px 0px;
+}
+@media (max-width:1200px) {
+    #user_register .banner{
+        display:none;
+    }
+    #user_register #register_form{
+        padding-bottom:20px;
+        border-radius: 20px;
+    }
 }

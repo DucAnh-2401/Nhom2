@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+  const profile=document.getElementById('user_profile');
+  const logout=document.getElementById('user_logout');
   const form = document.getElementById('user_register');
   const userposition1 = document.getElementById('userposition1');
   const userposition2 = document.getElementById('userposition2');
@@ -7,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const emailInput = document.getElementById('useremail');
   const passwordInput = document.getElementById('userpassword');
   const confirmPasswordInput = document.getElementById('confirm_password');
-
+  profile.style.display='none';
+  logout.style.display='none';
   form.addEventListener('submit', function(event) {
     event.preventDefault(); // Ngăn chặn gửi biểu mẫu mặc định
     const user_position=userposition1.value;

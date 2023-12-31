@@ -39,9 +39,8 @@
 }
 
 .user_profile_detail .content_user_profile {
-    display: grid;
-    gap: 30px;
-    grid-template-columns: 2fr 4fr;
+    display: flex;
+    justify-content: center;
     padding-top: 10px;
 }
 
@@ -114,6 +113,7 @@
 .content_user_profile .user_post_information {
     max-height: 100vh;
     overflow-y: scroll;
+    max-width: 700px;
 }
 .user_post_information .post_header .user_avatar{
     object-fit:cover;
@@ -231,4 +231,9 @@
 }
 .footer_form .btn-success{
     padding:5px 15px;
+}
+@media (max-width:1100px) {
+    .content_user_profile .basic_user_information{
+        display:none;
+    }
 }
