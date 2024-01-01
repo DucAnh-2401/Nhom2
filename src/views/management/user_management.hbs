@@ -12,13 +12,13 @@
 						Đăng bài miễn phí
 					</a></li>
 				<li class="first_menu">
-						<i class="fa-solid fa-gear"></i>
-						Quản lý thông tin người dùng
-						<ul class="second_menu">
-							<li><a href="/admin/management/post">Quản lý bài đăng</a></li>
-							<li><a href="/admin/management/user">Quản lý thông tin người dùng</a></li>
-							<li><a href="/admin/management/chart">Biểu đồ thống kê</a></li>	
-						</ul>	
+					<i class="fa-solid fa-gear"></i>
+					Quản lý thông tin người dùng
+					<ul class="second_menu">
+						<li><a href="/admin/management/post">Quản lý bài đăng</a></li>
+						<li><a href="/admin/management/user">Quản lý thông tin người dùng</a></li>
+						<li><a href="/admin/management/chart">Biểu đồ thống kê</a></li>
+					</ul>
 				</li>
 			</ul>
 		</div>
@@ -26,7 +26,6 @@
 	<div class="user_information_area">
 		<table class="user_information" style="border-spacing:0px ;border:solid 1px rgb(58, 46, 46)">
 			<caption>Thông tin tài khoản trên hệ thống</caption>
-
 			<tr>
 				<th>Vai trò</th>
 				<th>Họ và tên</th>
@@ -43,12 +42,46 @@
 				<td>{{this.useremail}}</td>
 				<td>{{this.userpassword}}</td>
 				<td class="user_choose_options">
-					<a href="../../user/{{this.username_sign}}">
-						<span class="options_management">
-							<i class="fa-solid fa-pen"></i>
-							<span class="option_title">Chỉnh sửa</span>
-						</span>
-					</a>
+					<div class="options_management">
+						<i class="fa-solid fa-pen" data-id="{{this._id}}"></i>
+						<span class="option_title">Chỉnh sửa</span>
+						<div class="change-infor-user">
+							<form class="update-user" method="POST" action="../../admin/action/update-user/{{this._id}}">
+								<h1>Cập nhật thông tin người dùng</h1>
+								<div class="info-user-box">
+									<i class="fa-solid fa-users-rectangle"></i>
+									<input type="text" name="userposition" id="userposition"
+										value="{{this.userposition}}">
+								</div>
+								<div class="info-user-box">
+									<i class="fa-solid fa-user"></i>
+									<input type="text" name="username" id="username"
+										value="{{this.username}}">
+
+								</div>
+								<div class="info-user-box">
+									<i class="fa-solid fa-user"></i>
+									<input type="text" name="username_sign" id="username_sign"
+										 value="{{this.username_sign}}">
+								</div>
+								<div class="info-user-box">
+									<i class="fa-solid fa-envelope"></i>
+									<input type="email" name="useremail" id="useremail" value="{{this.useremail}}"
+										>
+								</div>
+								<div class="info-user-box">
+									<i class="fa-solid fa-key"></i>
+									<input type="text" name="userpassword" id="userpassword"
+										value="{{this.userpassword}}">
+
+								</div>
+								<div class="info-user-box">
+									<button type="submit" id="confirm_update_info">Cập nhật</button>
+									<button type="button" class="cacel-change-infor">Hủy</button>
+								</div>
+							</form>
+						</div>
+					</div>
 					<a>
 						<span class="options_management">
 							<span class="option_title option_title_right" style="color:red">Xóa</span>
@@ -60,8 +93,8 @@
 			{{/each}}
 		</table>
 		<div class="button_management">
-			<button type="button">
-				<a href="../insert-user">Thêm mới</a>
+			<button type="button" id="insert-user-button">
+				Thêm mới
 			</button>
 			<button type="button">
 				<a href="../management/export-data">Xuất báo cáo</a>
@@ -83,7 +116,57 @@
 		</p>
 	</div>
 </div>
+<div class="insert-user-area">
+	<form id="insert-user" class="insert_user_form form-insert-user" method="POST" action="../../admin/insert-user">
+		<div class="insert-user-box">
+			<h1>Thêm mới người dùng</h1>
+			<div class="user-box">
+				<i class="fa-solid fa-users-rectangle"></i>
+				<input type="text" name="userposition" id="userposition" placeholder="Vai trò" required>
+			</div>
+			<div class="user-box">
+				<i class="fa-solid fa-user"></i>
+				<input type="text" name="username" id="username" placeholder="Họ và tên" required>
+			</div>
+			<div class="user-box">
+				<i class="fa-solid fa-user"></i>
+				<input type="text" name="username_sign" id="username_sign" placeholder="Tên đăng nhập (là duy nhất)"
+					required>
+			</div>
+			<div class="user-box">
+				<i class="fa-solid fa-envelope"></i>
+				<input type="email" name="useremail" id="useremail" placeholder="Email" required>
+			</div>
+			<div class="user-box">
+				<i class="fa-solid fa-key"></i>
+				<input type="text" name="userpassword" id="userpassword" placeholder="Mật khẩu" required>
+
+			</div>
+			<div class="user-box user-last-box">
+				<i class="fa-solid fa-key"></i>
+				<input type="text" id="confirm_password" placeholder="Xác nhận mật khẩu"
+					required>
+			</div>
+			<div class="user-box action-insert-user">
+				<button type="submit" id="confirm_update_info">Thêm mới</button>
+				<button type="button" id="cacel-insert-user">
+					Hủy
+				</button>
+			</div>
+		</div>
+
+	</form>
+
+</div>
 <script>
+	const form = document.querySelector('.form-insert-user');
+	form.addEventListener('submit', function (event) {
+		event.preventDefault();
+		form.submit();
+	})    
+</script>
+<script>
+	//Xóa thông tin 1 người dùng trong hệ thống;
 	const trashIcons = document.querySelectorAll('.fa-trash')
 	const confirm_delete = document.getElementById('confirm_delete_user')
 	const confirm_delete_yes = document.getElementById('confirm_delete_yes')
@@ -95,9 +178,8 @@
 			confirm_delete.style.display = 'flex';
 			const dataId = trashIcon.dataset.id;
 			confirm_delete_yes.addEventListener('click', function () {
-				deleteItemId.value = dataId
-				deleteForm.submit()
-
+				deleteItemId.value = dataId;
+				deleteForm.submit();
 			})
 
 		})
@@ -105,5 +187,31 @@
 			confirm_delete.style.display = 'none';
 		})
 
+	})
+</script>
+<script>
+	//Xử lý thêm mới người dùng;
+	const insertButton = document.getElementById('insert-user-button');
+	const insertBox = document.querySelector('.insert-user-area');
+	const cacelInsert = document.getElementById('cacel-insert-user');
+	insertButton.onclick = function () {
+		insertBox.style.display = 'block';
+	}
+	cacelInsert.addEventListener('click', () => {
+		insertBox.style.display = 'none';
+	})
+</script>
+<script>
+	//Xử lý hiện form cập nhật thay đổi thông tin người dùng;
+	const changeButtons=document.querySelectorAll('.fa-pen');
+	changeButtons.forEach(button=>{
+		button.addEventListener('click',()=>{
+			const formChange= button.parentNode.querySelector('.change-infor-user');
+			formChange.style.display='flex';
+			const cacelChange=button.parentNode.querySelector('.cacel-change-infor');
+			cacelChange.addEventListener('click',()=>{
+				formChange.style.display='none';
+			})
+		})
 	})
 </script>

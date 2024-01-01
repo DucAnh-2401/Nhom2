@@ -15,10 +15,7 @@ const storage=multer.diskStorage({
 var upload=multer({storage:storage});
 router.post('/account',userControllers.change_account);
 router.post('/user_post',upload.array("images"),userControllers.post);
-router.get('/user_post',userControllers.show_post)
-router.get('/profile',userControllers.show_profile)
-router.post('/update_user_profile',upload.array("avatar"),userControllers.update_profile)
-router.get('/:username_sign',userControllers.show)
-router.post('/:username_sign',userControllers.update)
-
+router.get('/user_post',userControllers.show_post);
+router.get('/profile',userControllers.show_profile);
+router.post('/update_user_profile',upload.array("avatar"),userControllers.update_profile);
 module.exports=router;

@@ -3,41 +3,6 @@ const Post = require('../models/Post')
 const { MongoosetoObject } = require('../../util/mongoose')
 const { multipleMongoosetoObject } = require('../../util/mongoose')
 class UserConstrollers {
-    show(req, res, next) {
-        User.findOne({
-            username_sign: req.params.username_sign
-        }).then(user => {
-            res.render("users/userdetail", { user: MongoosetoObject(user) })
-        }).catch(next)
-    }
-    async update(req, res, next) {
-        //Lấy các giá trị từ form gửi đi
-        const userName = req.body.username
-        const userEmail = req.body.useremail
-        const userPosition = req.body.userposition
-        const userNameSign = req.body.username_sign
-        const userPassword = req.body.userpassword
-        const confirmPassword = req.body.confirm_userpassword
-        //console.log(userName,userEmail,userNameSign,userPassword,userPosition)
-        //res.send("Submit successfull !")
-        User.findOneAndUpdate(
-            //Điều kiện tìm kiếm
-            { username_sign: req.params.username_sign },
-            //Cập nhật các trường và giá trị mới
-            {
-                $set: {
-                    userposition: userPosition,
-                    username: userName,
-                    useremail: userEmail,
-                    userpassword: userPassword,
-                    username_sign: userNameSign,
-                    confirm_userpassword: confirmPassword
-                }
-            }
-        ).then(user => {
-            res.redirect('../admin/management/user')
-        }).catch(next)
-    }
     async update_profile(req, res, next) {
         const images = [];
         //console.log(req.files)
@@ -65,8 +30,6 @@ class UserConstrollers {
         }).then(results => {
             console.log("Dữ liệu đã được cập nhật");
         })
-
-        //console.log(username_sign)
         User.findOneAndUpdate({
             username_sign: username_sign
         }, {
@@ -81,9 +44,8 @@ class UserConstrollers {
                 relationshipStatus: relationshipStatus
             }
         }).then(user => {
-            res.redirect('../user/user-profile');
+            res.redirect('../user/profile');
         }).catch(next)
-        //console.log(username);
     }
     async show_profile(req, res, next) {
 

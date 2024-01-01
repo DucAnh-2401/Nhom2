@@ -10,8 +10,8 @@ class AdminControllers {
         const username = req.session.username;
         let avatarpath = 'uploads/logo.png';
         const user = await User.findOne({ username_sign: username_sign })
-        if(user){
-           avatarpath = user.avatar; 
+        if (user) {
+            avatarpath = user.avatar;
         }
         const posts = await Post.find();
         res.render('management/post_management', { posts: multipleMongoosetoObject(posts), username: username, avatarpath: avatarpath })
@@ -95,8 +95,8 @@ class AdminControllers {
         const username = req.session.username;
         let avatarpath = 'uploads/logo.png';
         const user = await User.findOne({ username_sign: username_sign })
-        if(user){
-           avatarpath = user.avatar; 
+        if (user) {
+            avatarpath = user.avatar;
         }
         // Truy vấn dữ liệu từ MongoDB
         const users = await User.find();
@@ -134,7 +134,7 @@ class AdminControllers {
         // Render biểu đồ sử dụng Handlebars
         res.render('management/chart_user', {
             male, female, other_gender, number_of_users, labels: labels, data: data,
-            username:username,avatarpath:avatarpath
+            username: username, avatarpath: avatarpath
         });
     }
     async option_management(req, res, next) {
@@ -143,11 +143,11 @@ class AdminControllers {
         const username_sign = req.session.username_sign;
         let avatarpath = 'uploads/logo.png';
         const user = await User.findOne({ username_sign: username_sign })
-        if(user){
-            avatarpath = user.avatar; 
+        if (user) {
+            avatarpath = user.avatar;
         }
         User.find().then(users => {
-            res.render('management/user_management', { username, userposition, users: multipleMongoosetoObject(users),avatarpath:avatarpath })
+            res.render('management/user_management', { username, userposition, users: multipleMongoosetoObject(users), avatarpath: avatarpath })
         }).catch(next)
     }
     async delete(req, res) {
@@ -159,48 +159,57 @@ class AdminControllers {
                 console.log(err)
             });
     }
-    async insert_user(req, res, next) {
-        const username = req.session.username;
-        const username_sign = req.session.username_sign;
-        let avatarpath = 'uploads/logo.png';
-        const user = await User.findOne({ username_sign: username_sign })
-        if(user){
-            avatarpath = user.avatar; 
-        }
-        res.render('users/insert_user',{username:username,avatarpath:avatarpath})
-    }
-    async insert_new_user(req, res, next) {
+    async insertUser(req, res, next) {
         //Lấy các giá trị trong form người dùng gửi lên ( sử dụng body-parser)
         const userPosition = req.body.userposition;
         const userName = req.body.username;
         const userNameSign = req.body.username_sign;
         const userEmail = req.body.useremail;
         const userPassword = req.body.userpassword;
-        const confirm_UserPassord = req.body.confirm_userpassword;
         //Thêm thông tin người dùng vào database
-        insert_NewUser();
-        async function insert_NewUser() {
-            const user = await User.find({
-                username_sign: userNameSign
+        const user = await User.find({
+            username_sign: userNameSign
+        })
+
+        if (user.length === 0) {
+            const newUser = new User({
+                userposition: userPosition,
+                useremail: userEmail,
+                username: userName,
+                username_sign: userNameSign,
+                userpassword: userPassword
             })
-
-            if (user.length === 0) {
-                const newUser = new User({
-                    userposition: userPosition,
-                    useremail: userEmail,
-                    username: userName,
-                    username_sign: userNameSign,
-                    userpassword: userPassword,
-                    confirmpassword: confirm_UserPassord
-                })
-                await newUser.save();
-                console.log("Add new user successfully !!!")
-                res.redirect('/admin/management/user')
-            } else {
-                res.send("Tên đăng nhập đã tồn tại !")
-            }
-
+            await newUser.save();
+            console.log("Add new user successfully !!!")
+            res.redirect('/admin/management/user')
+        } else {
+            res.send("Tên đăng nhập đã tồn tại !")
         }
+
+    }
+    async update(req, res, next) {
+        //Lấy các giá trị từ form gửi đi
+        const userName = req.body.username;
+        const userEmail = req.body.useremail;
+        const userPosition = req.body.userposition;
+        const userNameSign = req.body.username_sign;
+        const userPassword = req.body.userpassword;
+        User.findOneAndUpdate(
+            //Điều kiện tìm kiếm
+            { _id: req.params.id },
+            //Cập nhật các trường và giá trị mới
+            {
+                $set: {
+                    userposition: userPosition,
+                    username: userName,
+                    useremail: userEmail,
+                    userpassword: userPassword,
+                    username_sign: userNameSign,
+                }
+            }
+        ).then(user => {
+            res.redirect('../../../admin/management/user')
+        }).catch(next)
     }
 }
 module.exports = new AdminControllers();
