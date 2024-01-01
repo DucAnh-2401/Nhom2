@@ -1,44 +1,41 @@
-<form id="update_user" method="POST">
-    <div>
-        <h1>Cập nhật thông tin người dùng</h1>
-        <div class="user-box">
-            <i class="fa-solid fa-users-rectangle"></i>
-            <input type="text" name="userposition" id="userposition" placeholder="Vai trò"
-                value="{{user.userposition}}">
-        </div>
-        <div class="user-box">
-            <i class="fa-solid fa-user"></i>
-            <input type="text" name="username" id="username" placeholder="Họ và tên" value="{{user.username}}">
-
-        </div>
-        <div class="user-box">
-            <i class="fa-solid fa-user"></i>
-            <input type="text" name="username_sign" id="username_sign" placeholder="Tên đăng nhập (là duy nhất)"
-                value="{{user.username_sign}}">
-
-
-        </div>
-        <div class="user-box">
-            <i class="fa-solid fa-envelope"></i>
-            <input type="email" name="useremail" id="useremail" value="{{user.username}}" placeholder="Email">
-        </div>
-        <div class="user-box">
-            <i class="fa-solid fa-key"></i>
-            <input type="text" name="userpassword" id="userpassword" value="{{user.userpassword}}"
-                placeholder="Mật khẩu">
-
-        </div>
-        <div class="user-box user-last-box">
-            <i class="fa-solid fa-key"></i>
-            <input type="text" name="confirm_userpassword" id="confirm_password" value="{{user.confirmpassword}}"
-                placeholder="Xác nhận mật khẩu">
-        </div>
-        <p class="confirm_delete confirm_update_user">
-            <button type="submit" id="confirm_update_info">Cập nhật</button>
-            <button type="button">Hủy</button>
-        </p>
+<form id="update-user" method="POST">
+    <h1>Cập nhật thông tin người dùng</h1>
+    <div class="info-user-box">
+        <i class="fa-solid fa-users-rectangle"></i>
+        <input type="text" name="userposition" id="userposition" placeholder="Vai trò" value="{{user.userposition}}">
     </div>
-    
+    <div class="info-user-box">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" name="username" id="username" placeholder="Họ và tên" value="{{user.username}}">
+
+    </div>
+    <div class="info-user-box">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" name="username_sign" id="username_sign" placeholder="Tên đăng nhập (là duy nhất)"
+            value="{{user.username_sign}}">
+
+
+    </div>
+    <div class="info-user-box">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" name="useremail" id="useremail" value="{{user.username}}" placeholder="Email">
+    </div>
+    <div class="info-user-box">
+        <i class="fa-solid fa-key"></i>
+        <input type="text" name="userpassword" id="userpassword" value="{{user.userpassword}}" placeholder="Mật khẩu">
+
+    </div>
+    <div class="info-user-box">
+        <i class="fa-solid fa-key"></i>
+        <input type="text" name="confirm_userpassword" id="confirm_password" value="{{user.confirmpassword}}"
+            placeholder="Xác nhận mật khẩu">
+    </div>
+    <div class="infor-user-box">
+        <button type="submit" id="confirm_update_info">Cập nhật</button>
+        <button type="button">
+            <a href='../admin/management/user' style="color:white ;text-decoration:none">Hủy</a>
+        </button>
+    </div>
 </form>
 
 <script src="../js/update_user.js"></script>

@@ -1,0 +1,78 @@
+.insert_user_form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    background-image: url(https://images.unsplash.com/photo-1630061937831-5b8bc0a58548?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dW5pdmVyfGVufDB8fDB8fHww);
+}
+
+.insert-user-box {
+    margin-bottom: 20px;
+}
+
+.insert-user-box .action-insert-user {
+    margin: 20px 0px;
+}
+
+.insert-user-box h1 {
+    font-size: 27px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color-brand);
+}
+
+.user-box {
+    position: relative;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.user-box i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #888;
+}
+
+.user-box input {
+    width: 100%;
+    padding: 10px 40px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.user-box button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.user-box>button>a {
+    text-decoration: none;
+    color: white;
+}
+
+.user-box>button>a:hover {
+    text-decoration: underline;
+}
+
+.user-box>button[type="button"] {
+    background-color: #f44336;
+}
+
+.user-box>button[type="button"]:hover {
+    background-color: #d32f2f;
+}
+
+.user-last-box {
+    margin-bottom: 0;
+}

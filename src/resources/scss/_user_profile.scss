@@ -49,6 +49,8 @@
     height: max-content;
     border-bottom: solid 1px #130b0b;
     padding-bottom: 30px;
+    padding:10px 30px 10px 10px;
+    width:800px;
 }
 
 .basic_user_information p {
@@ -119,6 +121,10 @@
     object-fit:cover;
     object-position: center;
     
+}
+.user_post_information .information{
+    display:block;
+    padding-left: 10px;
 }
 .update_profile_detail {
     position: absolute;

@@ -708,143 +708,102 @@ content form button:active {
     display: none; } }
 
 #user_register {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: #c6d2d2;
-  padding: 30px 80px; }
-
-#user_register > div:first-child {
-  max-width: 600px;
-  height: 100%;
-  background-image: url(https://cdn.luatvietnam.vn/uploaded/Images/Original/2021/11/19/mau-bien-ban-thoa-thuan-hop-tac_1911135835.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center; }
+  display: flex;
+  justify-content: center;
+  padding: 30px 80px;
+  background-color: aliceblue; }
 
 #register_form {
-  padding: 0 30px;
-  background-color: white; }
+  padding: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  text-align: center; }
 
-#register_form div {
-  text-align: center;
-  margin: 15px 0px; }
+#register_form .banner {
+  width: 600px;
+  height: auto; }
 
-#register_form div:last-child {
-  margin: 0px; }
+#register_form .form-register {
+  padding: 0 30px 20px;
+  text-align: center; }
 
-#register_form > div:first-child {
-  text-align: left;
-  font-size: 18px;
-  margin: 10px 0px 0px; }
+.form-register .default-login {
+  border: solid 1px aqua;
+  padding: 10px 20px; }
 
-#register_form > div > h1 {
-  text-align: center !important;
+.default-login h1 {
   color: var(--color-brand); }
 
-#register_form div:first-child > p label {
-  padding-right: 20px; }
-
-#register_form div:first-child p {
-  text-align: center;
-  font-size: 20px;
-  margin: 10px 0px 20px; }
-
-#register_form > div:first-child .user-box {
-  position: relative;
-  width: max-content;
-  height: max-content;
-  margin: 0px; }
-
-#register_form div:first-child {
-  border: solid 1px cornflowerblue; }
-
-#register_form div:first-child .user-box {
-  margin-left: 50px;
-  height: 40px; }
-
-#register_form div:first-child .user-last-box {
-  margin-bottom: 20px; }
-
-div:first-child p:last-child button {
-  font-size: 18px;
-  background-color: var(--color-brand);
-  color: aliceblue;
-  font-weight: bold;
-  border-color: var(--color-brand);
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer; }
+.default-login .user-box {
+  width: 100%;
+  margin: 5px 0px;
+  text-align: left; }
 
 .user-box input {
-  font-size: 20px;
   border: none;
-  border-bottom: solid 2px #ae9e86;
-  width: 400px;
-  outline: none;
-  cursor: pointer; }
+  width: 85%;
+  border-bottom: solid 1px #625959;
+  outline: none; }
 
-.other_login {
-  margin-top: 0px; }
+.default-login .submit {
+  text-align: center;
+  margin: 10px 0px; }
 
-.other_login p {
-  height: max-content;
-  padding: 3px 0px;
-  font-family: 'Roboto'; }
-
-.other_login span {
-  font-size: 23px; }
-
-.other_login p {
-  margin-bottom: 0px; }
-
-.other_login p a {
-  font-size: 18px;
-  text-decoration: none;
-  color: #111010;
+.submit .submit-button {
   padding: 5px 10px;
-  border-radius: 5px;
-  display: inline-block;
-  color: #313434;
-  font-family: 'Roboto'; }
+  font-size: 18px;
+  cursor: pointer;
+  transition: all .3s ease;
+  color: white;
+  background-color: var(--color-brand);
+  border-radius: 10px;
+  border: none; }
 
-.other_login p:hover {
-  background-color: #e8eae9; }
+.submit .submit-button:hover {
+  transform: scale(1.1); }
 
-.other_login p:last-child:hover {
-  background-color: white; }
+.submit .submit-button:active {
+  transform: scale(1); }
 
-.other_login p:last-child a {
-  color: blue;
-  text-decoration: underline; }
-
-.other_login .fa-facebook {
-  color: #1877F2;
-  font-size: 20px; }
+@media (max-width: 1310px) {
+  #register_form .banner {
+    display: none; } }
 
 #user_register {
   display: flex;
   justify-content: center; }
 
 #register_form {
-  border-radius: 20px; }
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 20px; }
 
-#register_form .rememberme_checkbox {
-  margin: 0px;
-  font-size: 18px;
-  text-align: left;
-  margin-left: 50px; }
+#register_form .form-login {
+  padding: 10px 20px;
+  border: solid 1px aqua;
+  border-radius: 10px;
+  margin: 0px 20px; }
 
-#register_form .rememberme_checkbox span,
-#register_form .rememberme_checkbox a {
-  display: inline-block;
-  padding: 1px 0px; }
+.form-login h1 {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--color-brand); }
 
-@media (max-width: 1200px) {
-  #user_register .banner {
-    display: none; }
-  #user_register #register_form {
-    padding-bottom: 20px;
-    border-radius: 20px; } }
+.form-login .user-box {
+  width: 100%;
+  text-align: left; }
+
+.user-box .remember-login {
+  margin: 15px 0px 0px 0px; }
+
+.user-box .remember-login .remember-check {
+  width: max-content; }
+
+.form-login .submit {
+  text-align: center;
+  margin: 15px 0px; }
 
 .user_management {
   display: grid;
@@ -1075,59 +1034,56 @@ div:first-child p:last-child button {
   text-decoration: none;
   color: whitesmoke; }
 
-#update_user {
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+#update-user {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 4px; }
 
-#update_user > div {
-  width: max-content;
-  height: max-content;
-  padding: 50px;
-  padding-top: 0px;
-  background-color: #eadfdf;
-  margin: 20px 0px; }
+#update-user h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px; }
 
-#update_user > div .user-box, #update_user > div h1 {
-  width: max-content;
-  margin: 10px 0px; }
-
-.user-box .fa-solid {
-  padding-right: 5px;
-  font-size: larger; }
-
-.user-box .fa-users-rectangle {
-  font-size: small; }
-
-.user-box input {
-  font-size: 18px;
-  padding: 5px 10px 2px; }
-
-#update_user .confirm_delete {
-  text-align: right; }
-
-#update_user .confirm_delete button:last-child {
-  background-color: darkgray;
-  border-color: darkgray; }
-
-.confirm_update {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  display: none; }
-
-.confirm_update button {
-  background-color: #09c613;
-  color: white;
-  border-color: #09c613; }
-
-.confirm_update_user {
-  text-align: right;
-  display: block;
+.info-user-box {
   position: relative;
-  background-color: #eadfdf; }
+  margin-bottom: 15px; }
+
+.info-user-box i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #888; }
+
+.info-user-box input {
+  width: 100%;
+  padding: 10px 40px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px; }
+
+.infor-user-box {
+  text-align: center;
+  margin-top: 20px; }
+
+.infor-user-box button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px; }
+
+.infor-user-box button[type="button"] {
+  background-color: #f44336; }
+
+.infor-user-box button[type="button"]:hover {
+  background-color: #d32f2f; }
 
 .hidden {
   display: none; }
@@ -1175,7 +1131,9 @@ div:first-child p:last-child button {
   min-width: 200px;
   height: max-content;
   border-bottom: solid 1px #130b0b;
-  padding-bottom: 30px; }
+  padding-bottom: 30px;
+  padding: 10px 30px 10px 10px;
+  width: 800px; }
 
 .basic_user_information p {
   margin: 0px;
@@ -1234,6 +1192,10 @@ div:first-child p:last-child button {
 .user_post_information .post_header .user_avatar {
   object-fit: cover;
   object-position: center; }
+
+.user_post_information .information {
+  display: block;
+  padding-left: 10px; }
 
 .update_profile_detail {
   position: absolute;
@@ -1413,6 +1375,72 @@ div:first-child p:last-child button {
 
 .user_choose_options .remove-post-detail:hover {
   background-color: aliceblue; }
+
+.insert_user_form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  background-image: url(https://images.unsplash.com/photo-1630061937831-5b8bc0a58548?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dW5pdmVyfGVufDB8fDB8fHww); }
+
+.insert-user-box {
+  margin-bottom: 20px; }
+
+.insert-user-box .action-insert-user {
+  margin: 20px 0px; }
+
+.insert-user-box h1 {
+  font-size: 27px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--color-brand); }
+
+.user-box {
+  position: relative;
+  margin-bottom: 15px;
+  text-align: center; }
+
+.user-box i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #888; }
+
+.user-box input {
+  width: 100%;
+  padding: 10px 40px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px; }
+
+.user-box button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px; }
+
+.user-box > button > a {
+  text-decoration: none;
+  color: white; }
+
+.user-box > button > a:hover {
+  text-decoration: underline; }
+
+.user-box > button[type="button"] {
+  background-color: #f44336; }
+
+.user-box > button[type="button"]:hover {
+  background-color: #d32f2f; }
+
+.user-last-box {
+  margin-bottom: 0; }
 
 * {
   margin: 0px;

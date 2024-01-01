@@ -1,56 +1,59 @@
-#update_user{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-#update_user>div{
-    width:max-content;
-    height:max-content;
-    padding:50px;
-    padding-top: 0px;
-    background-color: #eadfdf;
-    margin:20px 0px;
-}
-#update_user>div .user-box,#update_user>div h1{
-    width:max-content;
-    margin:10px 0px;
-}
-.user-box .fa-solid{
-    padding-right:5px;
-    font-size: larger;
-}
-.user-box .fa-users-rectangle{
-    font-size: small;
-}
-.user-box input{
-    
-    font-size: 18px;
-    padding:5px 10px 2px;
+#update-user {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
 }
 
-#update_user .confirm_delete{
-    text-align: right;
+#update-user h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
 }
-#update_user .confirm_delete button:last-child{
-    background-color: darkgray;
-    border-color:darkgray ;
-}
-.confirm_update{
-    position:absolute;
-    top:0px;
-    right:0px;
-    bottom:0px;
-    left:0px;
-    display:none;
-}
-.confirm_update button{
-    background-color: rgb(9,198,19);
-    color:white;
-    border-color: rgb(9,198,19);
-}
-.confirm_update_user{
-    text-align: right;
-    display: block;
+
+.info-user-box {
     position: relative;
-    background-color: rgb(234, 223, 223);
+    margin-bottom: 15px;
+}
+
+.info-user-box i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #888;
+}
+
+.info-user-box input {
+    width: 100%;
+    padding: 10px 40px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.infor-user-box {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.infor-user-box button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.infor-user-box button[type="button"] {
+    background-color: #f44336;
+}
+
+.infor-user-box button[type="button"]:hover {
+    background-color: #d32f2f;
 }

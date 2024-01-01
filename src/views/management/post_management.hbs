@@ -1,8 +1,8 @@
 <main class="user_management">
     <div class="management_area">
         <div class="userinfo_management">
-            <img class="user_avatar" src="../../img/logo.png" alt="avatar" title="avatar">
-            <span id="user_name">Đức Nguyễn</span><br>
+            <img class="user_avatar" src="../../{{avatarpath}}" alt="avatar" title="avatar">
+            <span id="user_name">{{username}}</span><br>
             <span id="user_position">Admin</span>
         </div>
         <div class="user_management_tools" id="option_management">
@@ -12,16 +12,14 @@
                         Đăng bài miễn phí
                     </a></li>
                 <li class="first_menu">
-                    <a href="user_management">
                         <i class="fa-solid fa-gear"></i>
                         Quản lý thông tin người dùng
                         <ul class="second_menu">
-                            <li><a href="#">Quản lý bài đăng</a></li>
-                            <li><a href="user_management">Quản lý thông tin người dùng</a></li>
-                            <li><a href="chart">Biểu đồ thống kê</a></li>
+                            <li><a href="/admin/management/post">Quản lý bài đăng</a></li>
+                            <li><a href="/admin/management/user">Quản lý thông tin người dùng</a></li>
+                            <li><a href="/admin/management/chart">Biểu đồ thống kê</a></li>
 
                         </ul>
-                    </a>
                 </li>
             </ul>
         </div>

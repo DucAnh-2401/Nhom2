@@ -23,7 +23,7 @@
             <button type="button" id="update_profile_button">
                 <i class="fa-solid fa-pen-to-square"></i>
                 Chỉnh sửa thông tin chi tiết
-            </button>
+            </button><br>
             <button type="button" id="update_account_button" style="margin-top:3px">
                 <i class="fa-solid fa-pen-to-square"></i>
                 Đổi mật khẩu
@@ -40,7 +40,7 @@
                     </p>
                 </div>
                 <div class="post_content">
-                    <div class="content_decripstion">
+                    <div class="content_decripstion information">
                         <div class="content_container">Địa điểm:<span>{{this.location}}</span></div>
                         <div class="content_container">Công việc : <span>{{this.job}}</span></div>
                         <div class="content_container">Ngày bắt đầu :<span>{{this.startday}}</span></div>
@@ -84,7 +84,7 @@
             <i class="fa-solid fa-pencil" id="change_username" style="border-bottom:solid 1px black"></i>
             </input>
         </div>
-        <div class="content_form_update">
+        <div class="content_form_update" style="padding-left: 20px;">
             <ul>
                 <li>Sống và làm việc tại:
                     <input type="text" placeholder="{{address}}" name="address">
@@ -154,9 +154,11 @@
         </div>
     </div><!-- /form card change password -->
 </div>
-
 <script>
-
+    let profile = document.getElementById('user-profile');
+    profile.href = '../user/profile';
+</script>
+<script>
     const user_login = document.getElementById('user_login');
     const user_register_new = document.getElementById('user_register_new');
     user_login.style.display = 'none';
@@ -216,7 +218,7 @@
     const cacel_change_password=document.getElementById('cacel-change-password');
     const form_change_password=document.getElementById('form-change-password');
     const inputPasswordNew=document.getElementById('inputPasswordNew').value;
-    const inputPasswordNewVerify=document.getElementById('inputPasswordNewVerify');
+    const inputPasswordNewVerify=document.getElementById('inputPasswordNewVerify').value;
     //const submit_form=document.getElementById('submit-form-change-password');
     //Hiện form thay đổi mật khẩu
     update_account.addEventListener('click',function(){

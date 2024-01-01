@@ -1,7 +1,7 @@
 <main class="user_management">
 	<div class="management_area">
 		<div class="userinfo_management">
-			<img class="user_avatar" src="./img/logo.png" alt="avatar" title="avatar">
+			<img class="user_avatar" src="../../{{avatarpath}}" alt="avatar" title="avatar">
 			<span id="user_name">{{username}}</span><br>
 			<span id="user_position">{{userposition}}</span>
 		</div>
@@ -12,16 +12,13 @@
 						Đăng bài miễn phí
 					</a></li>
 				<li class="first_menu">
-					<a href="user_management">
 						<i class="fa-solid fa-gear"></i>
 						Quản lý thông tin người dùng
 						<ul class="second_menu">
-							<li><a href="#">Quản lý bài đăng</a></li>
-							<li><a href="user_management">Quản lý thông tin người dùng</a></li>
-							<li><a href="user/chart">Biểu đồ thống kê</a></li>
-							
-						</ul>
-					</a>
+							<li><a href="/admin/management/post">Quản lý bài đăng</a></li>
+							<li><a href="/admin/management/user">Quản lý thông tin người dùng</a></li>
+							<li><a href="/admin/management/chart">Biểu đồ thống kê</a></li>	
+						</ul>	
 				</li>
 			</ul>
 		</div>
@@ -46,7 +43,7 @@
 				<td>{{this.useremail}}</td>
 				<td>{{this.userpassword}}</td>
 				<td class="user_choose_options">
-					<a href="user/{{this.username_sign}}">
+					<a href="../../user/{{this.username_sign}}">
 						<span class="options_management">
 							<i class="fa-solid fa-pen"></i>
 							<span class="option_title">Chỉnh sửa</span>
@@ -64,16 +61,16 @@
 		</table>
 		<div class="button_management">
 			<button type="button">
-				<a href="insert_user">Thêm mới</a>
+				<a href="../insert-user">Thêm mới</a>
 			</button>
 			<button type="button">
-				<a href="user/export_data">Xuất báo cáo</a>
+				<a href="../management/export-data">Xuất báo cáo</a>
 			</button>
 		</div>
 	</div>
 
 </main>
-<form id="deleteForm" action="/delete" method="POST">
+<form id="deleteForm" action="/admin/management/user/delete" method="POST">
 	<input type="hidden" id="deleteItemId" name="itemId" value="">
 </form>
 <div class="confirm_delete" id="confirm_delete_user">

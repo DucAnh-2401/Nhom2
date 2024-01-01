@@ -4,24 +4,32 @@
 }
 #register_form{
     border-radius: 20px;
+    display:flex;
+    justify-content: center;
+    padding:20px;
 }
-#register_form .rememberme_checkbox{
-    margin:0px;
-    font-size:18px;
+#register_form .form-login{
+    padding:10px 20px; 
+    border:solid 1px aqua;
+    border-radius: 10px;
+    margin:0px 20px;
+}
+.form-login h1{
+    font-size: 2rem;
+    text-align:center;
+    color:var(--color-brand);
+}
+.form-login .user-box{
+    width:100%;
     text-align: left;
-    margin-left: 50px;
 }
-#register_form .rememberme_checkbox span,
-#register_form .rememberme_checkbox a{
-    display:inline-block;
-    padding:1px 0px;
+.user-box .remember-login {
+    margin:15px 0px 0px 0px;
 }
-@media (max-width:1200px) {
-    #user_register .banner{
-        display:none;
-    }
-    #user_register #register_form{
-        padding-bottom:20px;
-        border-radius: 20px;
-    }
+.user-box .remember-login .remember-check{
+    width:max-content;
+}
+.form-login .submit{
+    text-align: center;
+    margin:15px 0px;
 }

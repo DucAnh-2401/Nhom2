@@ -65,22 +65,23 @@
 				<img class="user_avatar" src="../../{{avatarpath}}" alt="avatar">
 				<span id="username_top_right">{{username}}</span>
 				<ul class="dropdown_option">
-					<li id="user_login"><a href="/sign_in">
+					<li id="user_login"><a href="action/login" id="login">
 							<i class="fa-solid fa-right-to-bracket"></i>
 							Đăng nhập
 						</a></li>
-					<li id="user_register_new"><a href="/register">
+					<li id="user_register_new"><a href="action/register" id="register">
 							<i class="fa-solid fa-user-plus"></i>
 							Đăng ký
 						</a></li>
-					<li id="user_profile"><a href="user/user_profile/{{username}}">
+					<li id="user_profile"><a href="user/profile" id="user-profile">
 							<i class="fa-solid fa-pen-to-square"></i>
 							Trang cá nhân
 						</a></li>
-					<li id="user_logout"><a href="/sign_in/logout">
+					<li id="user_logout"><a href="action/logout">
 							<i class="fa-solid fa-right-from-bracket"></i>
 							Đăng xuất
-						</a></li>
+						</a>
+					</li>
 				</ul>
 			</li>
 		</ul>

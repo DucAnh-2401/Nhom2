@@ -1,61 +1,72 @@
 <form id="user_register" method="POST">
-    <div>
-        
-    </div>
     <div id="register_form">
-        <div>
-            <h1>Đăng ký thành viên mới !</h1>
-            <p>
-                <input type="radio" name="userposition" id="userposition1" value="Ứng viên">
-                <label for="userposition1">Ứng viên</label>
-                <input type="radio" name="userposition" id="userposition2"value="Nhà tuyển dụng">
-                <label for="userposition2">Nhà tuyển dụng</label>
-            </p>
-            <div class="user-box">
-                <i class="fa-solid fa-user"></i>
-                <input type="text"name="username" id="username" placeholder="Họ và tên"required>
-                
+        <img src="../img/hop-tac-kinh-doanh.jpg" alt="Brands" title="Viec lam 24h" class="banner">
+        <div class="form-register ">
+            <div class="default-login">
+                <h1>Đăng ký thành viên mới !</h1>
+                <p>
+                    <input type="radio" name="userposition" id="userposition1" value="Ứng viên">
+                    <label for="userposition1">Ứng viên</label>
+                    <input type="radio" name="userposition" id="userposition2" value="Nhà tuyển dụng">
+                    <label for="userposition2">Nhà tuyển dụng</label>
+                </p>
+                <div class="user-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="username" id="username" placeholder="Họ và tên" required>
+
+                </div>
+                <div class="user-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="username_sign" id="username_sign"
+                        placeholder="Tên đăng nhập (viết liền không dấu)" required>
+
+                </div>
+                <div class="user-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" name="useremail" id="useremail" placeholder="Email" required>
+                </div>
+                <div class="user-box">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" name="userpassword" id="userpassword" placeholder="Mật khẩu" required>
+
+                </div>
+                <div class="user-box user-last-box">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" name="confirm_userpassword" id="confirm_password"
+                        placeholder="Xác nhận mật khẩu" required>
+
+                </div>
+                <div class="user-box submit">
+                    <button type="submit" class="submit-button">Đăng ký !</button>
+                </div>
             </div>
-            <div class="user-box">
-                <i class="fa-solid fa-user"></i>
-                <input type="text"name="username_sign" id="username_sign" placeholder="Tên đăng nhập (viết liền không dấu)"required>
-                
+            <div class="other_login">
+                <span>Or</span>
+                <p>
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                        Đăng ký bằng Facebook
+                    </a>
+                </p>
+                <p>
+                    <a href="#">
+                        <i class="fa-solid fa-phone"></i>
+                        Đăng ký bằng số điện thoại
+                    </a>
+                </p>
+                <p>
+                    Đã có tài khoản ?
+                    <a href="../action/login">Đăng nhập ngay !</a>
+                </p>
             </div>
-            <div class="user-box">
-                <i class="fa-solid fa-envelope"></i>
-                <input type="email"name="useremail"id="useremail"placeholder="Email" required>    
-            </div>
-            <div class="user-box">
-                <i class="fa-solid fa-key"></i>
-                <input type="password" name="userpassword" id="userpassword" placeholder="Mật khẩu"required>
-                
-            </div>
-            <div class="user-box user-last-box">
-                <i class="fa-solid fa-key"></i>
-                <input type="password" name="confirm_userpassword" id="confirm_password" placeholder="Xác nhận mật khẩu"required>
-                
-            </div>
-            <p><button type="submit">Đăng ký !</button></p>
         </div>
-        <div class="other_login">
-            <span>Or</span>
-            <p>
-                <a href="#">
-                    <i class="fa-brands fa-facebook"></i>
-                    Đăng ký bằng Facebook
-                </a>
-            </p>
-            <p>
-                <a href="#">
-                    <i class="fa-solid fa-phone"></i>
-                    Đăng ký bằng số điện thoại
-                </a>
-            </p>
-            <p>
-                Đã có tài khoản ?
-                <a href="/sign_in">Đăng nhập ngay !</a>
-            </p>
-        </div>   
+
     </div>
 </form>
-<script src="js/register.js"></script>
+<script src="../js/register.js"></script>
+<script>
+    let login = document.getElementById('login');
+    let register = document.getElementById('register');
+    login.href = '../action/login';
+    register.href = '../action/register';
+</script>

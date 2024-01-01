@@ -1,5 +1,5 @@
-<form id="update_user" class="insert_user_form" method="POST">
-    <div>
+<form id="insert-user" class="insert_user_form form-insert-user" method="POST">
+    <div class="insert-user-box">
         <h1>Thêm mới người dùng</h1>
         <div class="user-box">
             <i class="fa-solid fa-users-rectangle"></i>
@@ -9,14 +9,11 @@
         <div class="user-box">
             <i class="fa-solid fa-user"></i>
             <input type="text" name="username" id="username" placeholder="Họ và tên">
-
         </div>
         <div class="user-box">
             <i class="fa-solid fa-user"></i>
             <input type="text" name="username_sign" id="username_sign" placeholder="Tên đăng nhập (là duy nhất)"
                 >
-
-
         </div>
         <div class="user-box">
             <i class="fa-solid fa-envelope"></i>
@@ -33,12 +30,20 @@
             <input type="text" name="confirm_userpassword" id="confirm_password" 
                 placeholder="Xác nhận mật khẩu">
         </div>
-        <p class="confirm_delete confirm_update_user">
+        <div class="user-box action-insert-user">
             <button type="submit" id="confirm_update_info">Thêm mới</button>
-            <button type="button">Hủy</button>
-        </p>
+            <button type="button">
+                <a href='/admin/management/user'>Hủy</a>
+            </button>
+        </div>
     </div>
     
 </form>
-
-<script src="../js/update_user.js"></script>
+<script>
+    const form=document.querySelector('.form-insert-user');
+    console.log(form);
+    form.addEventListener('submit',function(event){
+        event.preventDefault();
+        form.submit();
+    })    
+</script>
