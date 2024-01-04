@@ -1,9 +1,26 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <div class="user_profile_detail">
     <div class="banner_and_avatar">
         <div id="user_avatar">
-            <img src="../../{{avatarpath}}">
+            <img src="../../{{user.avatar}}">
         </div>
-        <p>{{user.username}}</p>
+        <p id="user-name-real">{{user.username}}</p>
+        <div class="option-with-user">
+            <button class="add-friend-button">
+                <input type="hidden" value="{{user._id}}" id="room-number">
+                <i class="fa-solid fa-user-plus"></i>
+                Thêm bạn bè
+            </button>
+            <button class="send-mesage" id="chat-with-you">
+                <i class="fa-brands fa-facebook-messenger"></i>
+                Nhắn tin
+            </button>
+        </div>
     </div>
     <div class="content_user_profile">
         <div class="basic_user_information">
@@ -20,16 +37,19 @@
             <p>Sinh ngày <span style="font-weight:bolder">{{user.birthday}}</span></p>
             <p>Giới tính <span style="font-weight:bolder">{{user.gender}}</span></p>
             <p>Tình trạng mối quan hệ <span style="font-weight:bolder">{{user.relationshipStatus}}</span></p>
-            <button type="button" id="update_profile_button">
-                <i class="fa-solid fa-pen-to-square"></i>
-                Chỉnh sửa thông tin chi tiết
-            </button><br>
-            <button type="button" id="update_account_button" style="margin-top:3px">
-                <i class="fa-solid fa-pen-to-square"></i>
-                Đổi mật khẩu
-            </button>
+            <div class="action-with-account">
+                <button type="button" id="update_profile_button">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Chỉnh sửa thông tin chi tiết
+                </button><br>
+                <button type="button" id="update_account_button" style="margin-top:3px">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Đổi mật khẩu
+                </button>
+            </div>
         </div>
         <div class="user_post_information">
+            {{#if posts}}
             {{#each posts}}
             <div class="post">
                 <div class="post_header">
@@ -72,6 +92,12 @@
                 </div>
             </div>
             {{/each}}
+            {{else}}
+            <p>Bạn chưa có bài đăng nào ...</p>
+            <p>Đăng bài ngay để mọi người biết đến bạn nhiều hơn 
+                <a href="../user_post">Đăng bài ngay !</a>
+            </p>
+            {{/if}}
         </div>
     </div>
 </div>
@@ -79,7 +105,7 @@
     <form action="/user/update_user_profile" method="POST" id="form_update_profile" enctype="multipart/form-data">
         <div class="header_form_update">
             <img id="update_profile_user_avatar" src="../../{{avatarpath}}" alt="avatar">
-            <input id="update_profile_user_avatar_input" type="file" name="avatar" accept=".png, .jpg, .jpeg" ><br>
+            <input id="update_profile_user_avatar_input" type="file" name="avatar" accept=".png, .jpg, .jpeg"><br>
             <input type="text" value="{{user.username}}" id="update_profile_username" name="username" readonly>
             <i class="fa-solid fa-pencil" id="change_username" style="border-bottom:solid 1px black"></i>
             </input>
@@ -129,7 +155,8 @@
             <h3 class="mb-0">Đổi mật khẩu</h3>
         </div>
         <div class="card-body">
-            <form autocomplete="off" class="form" id="form-change-password"role="form" action="/user/account" method="post">
+            <form autocomplete="off" class="form" id="form-change-password" role="form" action="/user/account"
+                method="post">
                 <div class="form-group">
                     <label for="inputPasswordOld">Mật khẩu hiện tại</label>
                     <input class="form-control" id="inputPasswordOld" required="" type="password" name="oldPassword">
@@ -143,98 +170,96 @@
                 </div>
                 <div class="form-group">
                     <label for="inputPasswordNewVerify">Xác nhận mật khẩu</label>
-                    <input class="form-control" id="inputPasswordNewVerify" required="" type="password" name="verifyPassword">
+                    <input class="form-control" id="inputPasswordNewVerify" required="" type="password"
+                        name="verifyPassword">
                     <span class="form-text small text-muted">Để xác nhận, hãy nhập lại mật khẩu mới.</span>
                 </div>
                 <div class="form-group footer_form">
-                    <button class="btn btn-success btn-lg float-right" type="submit" id="submit-form-change-password">Lưu</button>
-                    <button class="btn btn-success btn-lg float-left" id="cacel-change-password" type="button" style="background-color:rgb(203, 11, 49); border-color:rgb(203, 11, 49)">Hủy</button>
+                    <button class="btn btn-success btn-lg float-right" type="submit"
+                        id="submit-form-change-password">Lưu</button>
+                    <button class="btn btn-success btn-lg float-left" id="cacel-change-password" type="button"
+                        style="background-color:rgb(203, 11, 49); border-color:rgb(203, 11, 49)">Hủy</button>
                 </div>
             </form>
         </div>
     </div><!-- /form card change password -->
 </div>
+<div class="messenger-icon">
+    <img src="../../img/snapedit_1704288523594.png">
+</div>
+<div class="chat-box" id="chat-box">
+    <div class="header-chat-box">
+        <div class="content-header-chat">
+            <img class="avatar-user" src="../../{{avatarpath}}">
+            <span class="username">{{username}}</span>
+        </div>
+        <div class="exit-chat">
+            <i class="fa-solid fa-minus"></i>
+            <i class="fa-solid fa-xmark" id="exit-chat-button"></i>
+        </div>
+    </div>
+    <div class="content-chat-box scrollbar" id="scrollbar">
+        <input type="hidden" value="" id="SocketId">
+    </div>
+    <div class="footer-chat-box">
+        <i class="fa-solid fa-paperclip"></i>
+        <input class="content-message" placeholder="Type to write message ..." id="content-message">
+        <i class="fa-regular fa-face-smile"></i>
+        <button class="send-message" id="send-message-button">Send</button>
+    </div>
+</div>
+<div id="post_action_if_do_not_have_account" class="message-but-no-have-account">
+    <div class="post_action_box">
+        <div class="header_post_action">
+            <img src="../../img/logo.png" alt="logo brand" title="logo brand">
+            <span>Việc làm <span>24h</span></span>
+        </div>
+        <div class="content_post_action">
+            <p>Bạn hiện chưa có tài khoản trên hệ thống !<br>
+                Tạo tài khoản ngay nhắn tin với tài khoản này ?</p>
+        </div>
+        <div class="footer_post_action">
+            <button onclick="window.location='../../action/register'">Tạo tài khoản</button>
+            <button id="button_destroy_if_dont_want_create_account" type="button">Hủy</button>
+        </div>
+    </div>
+</div>
 <script>
-    let profile = document.getElementById('user-profile');
-    profile.href = '../user/profile';
+    //Chỉnh lại đường dẫn 
+    const user_login1 = document.getElementById('login');
+    const user_register_new1 = document.getElementById('register');
+    let user_profile1= document.getElementById('user-profile').href;
+    const user_logout1 = document.getElementById('user-logout');
+    let profileLink= document.getElementById('user-profile');
+    user_login1.href='../../action/login';
+    user_register_new1.href='../../action/register';
+    user_logout1.href='../../action/logout';
+    profileLink.href=user_profile1.substring(0,21)+user_profile1.substring(34);
 </script>
 <script>
-    const user_login = document.getElementById('user_login');
-    const user_register_new = document.getElementById('user_register_new');
-    user_login.style.display = 'none';
-    user_register_new.style.display = 'none';
-    const update_profile_button = document.getElementById("update_profile_button");
-    const update_profile_detail = document.getElementById("update_profile_detail");
-    const exit_update_profile = document.getElementById("exit_update_profile");
-    update_profile_button.addEventListener('click', function () {
-        update_profile_detail.style.display = "flex";
-    })
-    exit_update_profile.addEventListener("click", function () {
-        update_profile_detail.style.display = "none";
-    })
-    const update_profile_username = document.getElementById('update_profile_username');
-    const change_username = document.getElementById('change_username');
-    change_username.addEventListener('click', function () {
-        update_profile_username.readOnly = false;
-        update_profile_username.focus();
-    })
-    update_profile_username.addEventListener("input", function () {
-        this.size = this.value.length;
-    });
-    //Chọn ảnh 
-    const update_profile_user_avatar = document.getElementById("update_profile_user_avatar");
-    const update_profile_user_avatar_input = document.getElementById("update_profile_user_avatar_input");
-    update_profile_user_avatar_input.addEventListener("change", function () {
-        if (this.files && this.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                update_profile_user_avatar.src = e.target.result;
-            };
-
-            reader.readAsDataURL(this.files[0]);
+    const guest = document.getElementById('username_top_right').textContent;
+    const you = document.getElementById('user-name-real').textContent;
+    const optionWithUser = document.querySelector('.option-with-user');
+    const loginForm = document.getElementById('')
+    const actionWithAccount = document.querySelector('.action-with-account');
+    const requestChatButton1 = document.getElementById('chat-with-you');
+    const cacelButton = document.getElementById('button_destroy_if_dont_want_create_account');
+    requestChatButton1.addEventListener('click', () => {
+        if (guest === 'Profile') {
+            post_action_if_do_not_have_account.style.display = 'block';
         }
-    });
-    //Ẩn những trường không có giá trị trên bài đăng
-    // Lấy danh sách tất cả trường
-    const content_container = document.querySelectorAll('.content_container');
-
-    // Lặp qua từng trường thông tin
-    content_container.forEach(container => {
-        //Lấy giá trị của ô input 
-        const content = container.querySelector('span').textContent;
-        // Kiểm tra giá trị của ô input
-        if (content === '') {
-            // Nếu không có giá trị, ẩn ô input
-            container.classList.add('hidden');
-        } else {
-            // Nếu có giá trị, hiển thị ô input
-            container.classList.remove('hidden');
-        }
-    });
-    //Thay đổi thông tin tài khoản
-    const update_account = document.getElementById('update_account_button');
-    const update_account_form= document.getElementById('update-account-form');
-    const cacel_change_password=document.getElementById('cacel-change-password');
-    const form_change_password=document.getElementById('form-change-password');
-    const inputPasswordNew=document.getElementById('inputPasswordNew').value;
-    const inputPasswordNewVerify=document.getElementById('inputPasswordNewVerify').value;
-    //const submit_form=document.getElementById('submit-form-change-password');
-    //Hiện form thay đổi mật khẩu
-    update_account.addEventListener('click',function(){
-        update_account_form.style.display="flex";
-        })
-    //Ẩn form thay đổi mật khẩu 
-    cacel_change_password.addEventListener('click',function(){
-        update_account_form.style.display='none';
     })
-    //Kiểm tra mật khẩu mới và mật khẩu xác nhận đã trùng khớp chưa 
-    form_change_password.addEventListener('submit', function(event){
-         event.preventDefault();
-         if(inputPasswordNew!==inputPasswordNewVerify){
-            alert('Mật khẩu xác nhận không khớp với mật khẩu mới!');
-            return;
-         }
-         form_change_password.submit();
+    cacelButton.addEventListener('click', () => {
+        post_action_if_do_not_have_account.style.display = 'none';
     })
+    if (guest !==you) {
+        actionWithAccount.style.display = 'none';
+        optionWithUser.style.display = 'block';
+    }else{
+        actionWithAccount.style.display = 'block';
+        optionWithUser.style.display = 'none';
+    }
 </script>
+<script src="../../js/profile.js"></script>
+<script src="../../socket.io/socket.io.js"></script>
+<script src="../../js/chat.js"></script>

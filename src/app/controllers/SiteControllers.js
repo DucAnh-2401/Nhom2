@@ -8,7 +8,7 @@ class SiteControllers {
         let username = req.session.username;
         let userposition = req.session.userposition;
         let username_sign = req.session.username_sign;
-        let avatarpath = "uploads/logo.png";
+        let avatarpath = "uploads/avatar-default.png";
         if (username == null || userposition == null) {
             username = "Profile";
             userposition = "Position";
@@ -23,7 +23,7 @@ class SiteControllers {
             avatarpath = avatar.avatar;
             Post.find().then(posts => {
                 posts = posts.reverse();
-                res.render('home', { username, userposition, avatarpath: avatarpath, posts: multipleMongoosetoObject(posts) })
+                res.render('home', { username, userposition, avatarpath: avatarpath,username_sign:username_sign,posts: multipleMongoosetoObject(posts) })
             }).catch(next)
         }
     }

@@ -1,12 +1,26 @@
-const express = require('express')
+const express = require('express');
 const session = require('express-session');
-const app = express()
-const handlebars= require('express-handlebars')
-const port = 3000
-const path=require('path')
-const route= require('./routers')
-const db= require('./config/db')
-const bodyParser = require('body-parser')
+const app = express();
+const handlebars= require('express-handlebars');
+const port = 3000;
+const path=require('path');
+const route= require('./routers');
+const db= require('./config/db');
+const bodyParser = require('body-parser');
+const socketIO= require('socket.io');
+const http=require('http');
+const server=http.createServer(app);
+const io=socketIO(server);
+io.on('connection',function(socket){
+  socket.on('join',function(room){
+    socket.join(room);
+    console.log(socket.id+' vừa vào phòng '+ room);
+    socket.on('Send message',function(data){
+      io.to(room).emit('receive-message',data);
+    })
+  });
+  
+});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -27,6 +41,6 @@ app.use(session({
 
 route(app)
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

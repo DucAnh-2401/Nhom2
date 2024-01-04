@@ -113,10 +113,10 @@
     display:inline-block;
     position:relative;
 }
-.user_information td .options_management:hover span{
+.user_information td .options_management:hover>span{
     display:block;
 }
-.user_information td .options_management span{
+.user_information td .options_management>span{
     position:absolute;
     bottom:0px;
     right:30px;
@@ -346,4 +346,45 @@
     .user_management .management_area{
         display:none;
     }
+}
+//Css cho xem chi tiết bài post
+.user_choose_options .post-detail .post-detail-child{
+    padding:10px;
+    width:max-content;
+    height:max-content;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 20px rgb(129, 118, 118);
+}
+.post-detail-child .header-post-detail{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;  
+}
+.post-detail-child .header-post-detail>img{
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border:solid 4px rgb(177, 166, 166);
+}
+.post-detail-child .header-post-detail .username{
+    font-size:18px;
+    margin:0px;
+}
+.post-detail-child .content-post-detail>.content_decripstion{
+   text-align: left;
+   padding-left:30px;
+   padding-top:20px;
+}
+.content-post-detail>.content_decripstion .content-detail-post{
+    clear:both;   
+}
+.post-detail-child .content-post-detail>.images{
+    display:grid;
+    max-width: 600px;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)) ;
+    gap:3px;
+    overflow:scroll;
 }

@@ -20,11 +20,10 @@ class AdminControllers {
         const postId = req.body.id_post;
         Post.findOneAndDelete({ _id: postId })
             .then(post => {
-                res.redirect('post_management');
+                res.redirect('/admin/management/post');
             }).catch(err => {
                 console.log(err);
             });
-
     }
     async export_data(req, res, next) {
         try {

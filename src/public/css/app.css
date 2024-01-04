@@ -329,11 +329,14 @@ main .aside_left .content_aside_left li:hover {
   padding-left: 30px; }
 
 content {
-  overflow: scroll;
   max-height: 550px;
   min-width: 500px;
   padding-bottom: 0px;
   max-width: 600px; }
+
+content > .post-list {
+  overflow-y: scroll;
+  max-height: 350px; }
 
 content > form {
   display: flex;
@@ -915,10 +918,10 @@ content form button:active {
   display: inline-block;
   position: relative; }
 
-.user_information td .options_management:hover span {
+.user_information td .options_management:hover > span {
   display: block; }
 
-.user_information td .options_management span {
+.user_information td .options_management > span {
   position: absolute;
   bottom: 0px;
   right: 30px;
@@ -1131,6 +1134,46 @@ content form button:active {
   .user_management .management_area {
     display: none; } }
 
+.user_choose_options .post-detail .post-detail-child {
+  padding: 10px;
+  width: max-content;
+  height: max-content;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 20px #817676; }
+
+.post-detail-child .header-post-detail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center; }
+
+.post-detail-child .header-post-detail > img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: solid 4px #b1a6a6; }
+
+.post-detail-child .header-post-detail .username {
+  font-size: 18px;
+  margin: 0px; }
+
+.post-detail-child .content-post-detail > .content_decripstion {
+  text-align: left;
+  padding-left: 30px;
+  padding-top: 20px; }
+
+.content-post-detail > .content_decripstion .content-detail-post {
+  clear: both; }
+
+.post-detail-child .content-post-detail > .images {
+  display: grid;
+  max-width: 600px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3px;
+  overflow: scroll; }
+
 .resgister_successful {
   position: absolute;
   top: 0;
@@ -1190,6 +1233,23 @@ content form button:active {
   background-size: cover;
   position: relative; }
 
+.banner_and_avatar .option-with-user {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  margin: 20px 50px; }
+
+.option-with-user > button {
+  padding: 5px 10px;
+  font-size: larger;
+  border-radius: 10px;
+  border: none; }
+
+.option-with-user .add-friend-button {
+  color: white;
+  background-color: var(--color-brand);
+  margin: 0px 5px; }
+
 .banner_and_avatar #user_avatar {
   width: 100px;
   height: 100px;
@@ -1214,7 +1274,8 @@ content form button:active {
 .user_profile_detail .content_user_profile {
   display: flex;
   justify-content: center;
-  padding-top: 10px; }
+  padding-top: 10px;
+  justify-content: space-between; }
 
 .content_user_profile .basic_user_information {
   min-width: 200px;
@@ -1222,7 +1283,7 @@ content form button:active {
   border-bottom: solid 1px #130b0b;
   padding-bottom: 30px;
   padding: 10px 30px 10px 10px;
-  width: 800px; }
+  width: 500px; }
 
 .basic_user_information p {
   margin: 0px;
@@ -1277,6 +1338,9 @@ content form button:active {
   max-height: 100vh;
   overflow-y: scroll;
   max-width: 700px; }
+
+.user_post_information > p {
+  text-align: center; }
 
 .user_post_information .post_header .user_avatar {
   object-fit: cover;
@@ -1391,6 +1455,117 @@ content form button:active {
   .content_user_profile .basic_user_information {
     display: none; } }
 
+.chat-box {
+  position: fixed;
+  right: 100px;
+  bottom: 0;
+  background-color: #ddd;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px #434743;
+  border-radius: 10px;
+  width: 300px;
+  display: none; }
+
+.chat-box .header-chat-box {
+  border-bottom: solid 1px #534a4a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #76839b;
+  font-weight: bold;
+  padding: 10px; }
+
+.header-chat-box img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%; }
+
+.header-chat-box .exit-chat i {
+  font-size: larger;
+  margin: 0px 5px;
+  cursor: pointer; }
+
+.chat-box .content-chat-box {
+  width: 100%;
+  overflow-y: scroll;
+  height: 300px;
+  padding: 10px; }
+
+.content-chat-box.message-left {
+  float: left; }
+
+.content-chat-box .message-right {
+  float: right; }
+
+.content-chat-box .clear {
+  clear: both; }
+
+.content-chat-box div p {
+  width: max-content;
+  background-color: #76839b;
+  color: #ddd;
+  border-radius: 20px;
+  padding: 2px 5px; }
+
+.chat-box .footer-chat-box {
+  position: sticky;
+  bottom: 0;
+  background-color: #758e8a;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around; }
+
+.footer-chat-box > input {
+  outline: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  border-color: aliceblue;
+  height: max-content;
+  width: 200px;
+  overflow-wrap: break-word;
+  color: #758e8a;
+  text-decoration: none; }
+
+.footer-chat-box > button {
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: large;
+  cursor: pointer;
+  border: none;
+  background-color: #80d6b9;
+  color: green; }
+
+.footer-chat-box > button:active {
+  transform: scale(0.9); }
+
+.messenger-icon {
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+  display: none; }
+
+.messenger-icon > img {
+  width: 60px;
+  height: auto;
+  animation: updown 3s infinite ease-in-out;
+  cursor: pointer; }
+
+@keyframes updown {
+  0% {
+    transform: translateY(-20px); }
+  50% {
+    transform: translateY(20px); }
+  100% {
+    transform: translateY(-20px); } }
+
+.message-but-no-have-account > .post_action_box {
+  margin-left: 50%;
+  transform: translateX(-50%); }
+
 .chart_area {
   display: flex;
   width: 100%;
@@ -1454,9 +1629,9 @@ content form button:active {
 
 .user_choose_options .remove-post-detail {
   position: absolute;
-  padding: 15px;
-  top: 0px;
-  right: 0px;
+  padding: 5px;
+  top: 10px;
+  right: 10px;
   border: none;
   border-radius: 10px;
   background-color: white;

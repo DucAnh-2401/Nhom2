@@ -12,13 +12,13 @@
                         Đăng bài miễn phí
                     </a></li>
                 <li class="first_menu">
-                        <i class="fa-solid fa-gear"></i>
-                        Quản lý bài đăng
-                        <ul class="second_menu">
-                            <li><a href="/admin/management/post">Quản lý bài đăng</a></li>
-                            <li><a href="/admin/management/user">Quản lý thông tin người dùng</a></li>
-                            <li><a href="/admin/management/chart">Biểu đồ thống kê</a></li>
-                        </ul>
+                    <i class="fa-solid fa-gear"></i>
+                    Quản lý bài đăng
+                    <ul class="second_menu">
+                        <li><a href="/admin/management/post">Quản lý bài đăng</a></li>
+                        <li><a href="/admin/management/user">Quản lý thông tin người dùng</a></li>
+                        <li><a href="/admin/management/chart">Biểu đồ thống kê</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -43,37 +43,39 @@
                         <span class="option_title ">Xem chi tiết</span>
                         <div class="post-detail" data-id="{{this._id}}">
                             <div class="post-detail-child ">
-                                <div class="post_header">
-                                    <img class="user_avatar" src="../{{this.avatar}}">
-                                    <p>{{this.username}}</p>
-                                    <p>{{this.date}}</p>
+                                <div class="post_header header-post-detail">
+                                    <img class="user_avatar" src="../../{{this.avatar}}">
+                                    <div>
+                                        <p class="username">{{this.username}}</p>
+                                        <p class="username date-post">{{this.date}}</p>
+                                    </div>
                                 </div>
-                                <div class="post_content">
+                                <div class="post_content content-post-detail">
                                     <div class="content_decripstion">
                                         <p class="post_content_container">Địa điểm :
-                                        <span>{{this.location}}</span>
+                                            <span class="content-detail-post">{{this.location}}</span>
                                         </p>
                                         <p class="post_content_container">Công việc :
-                                        <span>{{this.job}}</span>
+                                            <span class="content-detail-post">{{this.job}}</span>
                                         </p>
                                         <p class="post_content_container">Ngày bắt đầu :
-                                        <span>{{this.startday}}</span>
+                                            <span class="content-detail-post">{{this.startday}}</span>
                                         </p>
                                         <p class="post_content_container">Ngày kết thúc :
-                                        <span>{{this.enday}}</span>
+                                            <span>{{this.enday}}</span>
                                         </p>
                                         <p class="post_content_container">Kinh nghiệm làm việc :
-                                        <span>{{this.experience}}</span>
+                                            <span>{{this.experience}}</span>
                                         </p>
                                         <p class="post_content_container">Mức lương thấp nhất
                                             :
-                                        <span>{{this.lowest_salary}}</span>
+                                            <span class="content-detail-post">{{this.lowest_salary}}</span>
                                         </p>
                                         <p class="post_content_container">Mức lương cao nhất :
-                                        <span>{{this.highest_salary}}</span>
+                                            <span class="content-detail-post">{{this.highest_salary}}</span>
                                         </p>
                                         <p class="post_content_container">Mô tả công việc :
-                                        <span>{{this.decripstion}}</span>
+                                            <span class="content-detail-post">{{this.decripstion}}</span>
                                         </p>
                                     </div>
                                     <div class="images">
@@ -82,7 +84,9 @@
                                         {{/each}}
                                     </div>
                                 </div>
-                                <button type="button" class="remove-post-detail">X</button>
+                                <button type="button" class="remove-post-detail">
+                                    <i class="fa-solid fa-xmark"style='font-size:25px'></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -98,7 +102,7 @@
     </div>
 
 </main>
-<form action="delete_post" method="post" id="form-delete-post">
+<form action="post/delete" method="post" id="form-delete-post">
     <input type="hidden" value="" name="id_post" id="deletePostId">
 </form>
 <div class="confirm_delete_post" id="confirm_delete_post">

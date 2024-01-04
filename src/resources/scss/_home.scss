@@ -84,11 +84,14 @@ main .aside_left .content_aside_left li:hover{
 	padding-left: 30px;
 }
 content{
-	overflow:scroll;
 	max-height: 550px;
 	min-width: 500px;
 	padding-bottom: 0px;
 	max-width: 600px;
+}
+content>.post-list{
+	overflow-y: scroll;
+	max-height: 350px;
 }
 content>form{
 	display:flex;

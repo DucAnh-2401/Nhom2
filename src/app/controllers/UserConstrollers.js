@@ -44,26 +44,31 @@ class UserConstrollers {
                 relationshipStatus: relationshipStatus
             }
         }).then(user => {
-            res.redirect('../user/profile');
+            res.redirect('../user/profile/'+username_sign);
         }).catch(next)
     }
     async show_profile(req, res, next) {
-
-        const username_sign = req.session.username_sign;
+        const username_sign = req.params.username_sign;
+        let userFake;
         let avatarpath;
-        const user = await User.findOne({ username_sign: username_sign });
-        const username = user.username;
-        try {
-            avatarpath = user.avatar;
-            console.log(avatarpath)
-        } catch (err) {
-            avatarpath = 'logo.png';
+        let usernameSign;
+        let username;
+        try{
+            usernameSign=req.session.username_sign; 
+             userFake = await User.findOne({ username_sign:usernameSign });
+             username = userFake.username;
+             avatarpath=userFake.avatar;
+        }catch(err){
+            usernameSign='Profile';
+            username='Profile';
+            avatarpath='uploads/avatar-default.png';
         }
-        Post.find({ username_sign: username_sign })
-            .then(posts => {
-                //console.log(posts)
-                res.render('users/user_profile', { username, username_sign, avatarpath, posts: multipleMongoosetoObject(posts), user: MongoosetoObject(user) })
-            }).catch(next)
+        const user= await User.findOne({
+            username_sign:username_sign
+        })
+        const posts= await Post.find({ username_sign: username_sign });
+        res.render('users/user_profile', { username, username_sign:usernameSign, avatarpath,posts: multipleMongoosetoObject(posts), user: MongoosetoObject(user) });
+            
     }
     async post(req, res, next) {
         const images = [];
@@ -73,10 +78,9 @@ class UserConstrollers {
             file.path = file.path.substring(file.path.indexOf('uploads'))
             images.push(file.path)
         });
-        //console.log(images)
         const username_sign = req.session.username_sign;
         const username = req.session.username;
-        const avatar = await Post.findOne({
+        const avatar = await User.findOne({
             username_sign: username_sign
         })
         let avatar_path;
@@ -85,8 +89,6 @@ class UserConstrollers {
         } catch (err) {
             avatar_path = 'logo.png';
         }
-
-        //console.log(username_sign);
         const location = req.body.location;
         const job = req.body.job;
         const startday = req.body.startday;
@@ -121,7 +123,6 @@ class UserConstrollers {
         const pass = await User.findOne({
             username_sign: username_sign
         })
-        console.log(pass);
         const password = pass.userpassword;
         const oldPassword = req.body.oldPassword;
         const newPassword = req.body.newPassword;
