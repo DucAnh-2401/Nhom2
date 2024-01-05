@@ -22,7 +22,7 @@ class CommentControllers{
                 post.save();
                 console.log(post);
             }
-        })
+        });
         res.redirect("/")
     }
 }

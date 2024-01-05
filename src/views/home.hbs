@@ -34,6 +34,7 @@
             <button type="button">Đăng bài</button>
         </form>
         <div class="post-list">
+            {{#if posts}}
             {{#each posts}}
             <div class="post">
                 <div class="post_header">
@@ -125,11 +126,13 @@
                                 <p class="comment-count">{{this.listComments.length}} bình luận</p>
                                 {{#if listComments.length}}
                                 {{#each listComments}}
-                                <div class="list-comment">
-                                    <img src="../{{this.avatar}}">
-                                    <div class="text-area">
-                                        <p class="name">{{this.username}}</p>
-                                        <p class="time">{{this.comment}}</p>
+                                <div class="list-comment-reals">
+                                    <div class="list-comment">
+                                        <img src="../{{this.avatar}}">
+                                        <div class="text-area">
+                                            <p class="name">{{this.username}}</p>
+                                            <p class="time">{{this.comment}}</p>
+                                        </div>
                                     </div>
                                 </div>
                                 {{/each}}
@@ -143,9 +146,13 @@
                                     <textarea name="contentComment" class="content-comment"
                                         placeholder="Bạn đang nghĩ gì ?..."></textarea>
                                     <i class="fa-regular fa-paper-plane" id="submit-comment-button"></i>
-                                    <input class="id-post" id="id-post" type="hidden" value="" name="idPost">
+                                    <input class="id-post" id="id-post" type="hidden" value="{{this._id}}"
+                                        name="idPost">
                                     {{#with ../avatarpath}}
-                                    <input name="avatar" value="{{this}}" type="hidden">
+                                    <input name="avatar" class="avatarSender" value="{{this}}" type="hidden">
+                                    {{/with}}
+                                    {{#with ../username}}
+                                    <input class="sender" value="{{this}}" type="hidden">
                                     {{/with}}
                                 </form>
                                 <i class="fa-regular fa-circle-xmark" id="exit-comment-action"></i>
@@ -157,21 +164,34 @@
                         <span>Chia sẻ</span>
                     </div>
                 </div>
-
+                <div class="list-post-comment-real-real">
+                    {{#each listComments}}
+                    <div class="list-comment list-comment-real">
+                        <img src="../{{this.avatar}}">
+                        <div class="text-area">
+                            <p class="name">{{this.username}}</p>
+                            <p class="time">{{this.comment}}</p>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
             </div>
             {{/each}}
+            {{else}}
+            <p>Chúng tôi không tìm thấy bất kỳ thông tin nào phù hợp</p>
+            {{/if}}
         </div>
     </content>
     <aside class="aside_right">
         <div class="quick_searching">
-            <form action="/searching" method="get">
+            <form action="/searching" method="get" id="form-searching">
                 <p><i class="fa-solid fa-magnifying-glass"></i>Tìm nhiều hơn</p>
                 <p class="searching-option">
                     <button type="button">Ứng viên</button>
                     <button type="button">Việc làm</button>
                 </p>
                 <select class="industry" name="job">
-                    <option value="Ngành nghề">Ngành nghề</option>
+                    <option value="job">Ngành nghề</option>
                     <option value="Bán hàng">Bán hàng</option>
                     <option value="Tư vấn bảo hiểm">Tư vấn bảo hiểm</option>
                     <option value="Báo chí/Biên tập viên ">Báo chí/Biên tập viên </option>
@@ -181,7 +201,7 @@
                     <option value="Công nghệ thông tin">Công nghệ thông tin</option>
                 </select>
                 <select class="location" name="location">
-                    <option value="Địa điểm">Địa điểm</option>
+                    <option value="location">Địa điểm</option>
                     <option value="Hồ Chí Minh">Hồ Chí Minh</option>
                     <option value="Nghệ An">Nghệ An</option>
                     <option value="Thanh Hoa">Thanh Hoa</option>
@@ -199,7 +219,7 @@
                 </select><br>
                 <span>Mức lương</span><br>
                 <select class="smallest_salary" name="smallest_salary">
-                    <option value="Thấp nhất">Thấp nhất</option>
+                    <option value="min">Thấp nhất</option>
                     <option value="1000000">1 triệu</option>
                     <option value="2000000">2 triệu</option>
                     <option value="3000000">3 triệu</option>
@@ -213,7 +233,7 @@
                     <option value="1000001">Trên 10 triệu</option>
                 </select>
                 <select class="highest_salary" name="highest_salary">
-                    <option value="Cao nhất">Cao nhất</option>
+                    <option value="max">Cao nhất</option>
                     <option value="1000000">1 triệu</option>
                     <option value="2000000">2 triệu</option>
                     <option value="3000000">3 triệu</option>
@@ -283,7 +303,7 @@
         </div>
         <div class="content_post_action">
             <p>Bạn hiện chưa có tài khoản trên hệ thống !<br>
-                Tạo tài khoản ngay để đăng bài ?</p>
+                Tạo tài khoản ngay để sử dụng tính năng này ?</p>
         </div>
         <div class="footer_post_action">
             <button onclick="window.location='register'">Tạo tài khoản</button>
@@ -294,13 +314,21 @@
 <script>
     const user_position = document.getElementById('user_position').textContent;
     const option_management = document.getElementById('option_management');
-    console.log(user_position!=='Admin');
     if (user_position === 'Admin' || user_position === 'admin') {
         option_management.style.display = 'block';
-    }else{
+    } else {
         option_management.style.display = 'none';
     };
 </script>
-
+<script>
+    //Set up trước khi tìm kiếm
+    const formSearching = document.getElementById('form-searching');
+    
+    formSearching.addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+    });
+</script>
 <script src="../js/post.js"></script>
+<script src="./socket.io/socket.io.js"></script>
 <script src="../js/comment.js"></script>

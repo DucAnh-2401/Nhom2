@@ -79,16 +79,12 @@ class UserConstrollers {
             images.push(file.path)
         });
         const username_sign = req.session.username_sign;
-        const username = req.session.username;
+        
         const avatar = await User.findOne({
             username_sign: username_sign
         })
-        let avatar_path;
-        try {
-            avatar_path = avatar.avatar;
-        } catch (err) {
-            avatar_path = 'logo.png';
-        }
+        let avatar_path = avatar.avatar;
+        let username=avatar.username;
         const location = req.body.location;
         const job = req.body.job;
         const startday = req.body.startday;
